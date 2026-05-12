@@ -63,16 +63,12 @@ export function SmoothScrollHeroBackground({
   const bottomInsetPx = (gapBottomVh / 100) * winH;
 
   // Insets animate from their rest values → 0 (full-screen)
-  const top    = useTransform(scrollY, [0, scrollHeight], [navbarHeight + gapTop, 0]);
-  const side   = useTransform(scrollY, [0, scrollHeight], [gapSide, 0]);
+  const top = useTransform(scrollY, [0, scrollHeight], [navbarHeight + gapTop, 0]);
+  const side = useTransform(scrollY, [0, scrollHeight], [gapSide, 0]);
   const bottom = useTransform(scrollY, [0, scrollHeight], [bottomInsetPx, 0]);
 
   // Border-radius disappears before card is fully expanded
-  const radius = useTransform(
-    scrollY,
-    [0, scrollHeight * 0.65],
-    [startRadius, 0],
-  );
+  const radius = useTransform(scrollY, [0, scrollHeight * 0.65], [startRadius, 0]);
 
   // Subtle parallax zoom on the media
   const scale = useTransform(scrollY, [0, scrollHeight + 300], [1.08, 1.0]);
@@ -139,9 +135,7 @@ export function SmoothScrollHeroBackground({
         />
 
         {/* ── Content slot ── */}
-        {children && (
-          <div className="absolute inset-0 flex flex-col">{children}</div>
-        )}
+        {children && <div className="absolute inset-0 flex flex-col">{children}</div>}
       </motion.div>
     </div>
   );
@@ -149,14 +143,8 @@ export function SmoothScrollHeroBackground({
 
 // ─── Standalone default export ────────────────────────────────────────────────
 
-const SmoothScrollHero: React.FC<SmoothScrollHeroProps> = ({
-  scrollHeight = 900,
-  ...rest
-}) => (
-  <div
-    style={{ height: `calc(${scrollHeight}px + 100vh)` }}
-    className="relative w-full"
-  >
+const SmoothScrollHero: React.FC<SmoothScrollHeroProps> = ({ scrollHeight = 900, ...rest }) => (
+  <div style={{ height: `calc(${scrollHeight}px + 100vh)` }} className="relative w-full">
     <SmoothScrollHeroBackground scrollHeight={scrollHeight} {...rest} />
   </div>
 );

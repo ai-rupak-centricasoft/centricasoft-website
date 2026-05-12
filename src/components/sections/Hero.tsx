@@ -69,8 +69,9 @@ export function Hero() {
               className="max-w-[980px] font-display text-[clamp(34px,6.2vw,72px)] leading-[1.02] tracking-[-0.045em] text-white"
               style={{ textShadow: "0 8px 32px rgba(0,0,0,0.26)" }}
             >
-              <span className="block font-[430] text-white/90">Data & AI Partner
-for Modern Enterprises</span>
+              <span className="block font-[430] text-white/90">
+                Data & AI Partner for Modern Enterprises
+              </span>
               {/* <span className="block font-semibold text-white">
                 designed with production discipline
               </span> */}
@@ -80,9 +81,8 @@ for Modern Enterprises</span>
               variants={itemVariants}
               className="max-w-[640px] text-[15px] leading-[1.8] tracking-[-0.01em] text-white/68 sm:text-[17px]"
             >
-              We build agentic workflows, GenAI products, and governed data foundations
-              that help modern enterprises move from experimentation to dependable
-              operating capability.
+              We build agentic workflows, GenAI products, and governed data foundations that help
+              modern enterprises move from experimentation to dependable operating capability.
             </motion.p>
 
             <motion.div
@@ -115,8 +115,8 @@ for Modern Enterprises</span>
             className="flex flex-col items-center gap-5"
           >
             <p className="max-w-[540px] text-[13px] leading-[1.8] tracking-[0.01em] text-white/46 sm:text-[14px]">
-              Strategic architecture, measured execution, and systems built to survive
-              real enterprise complexity.
+              Strategic architecture, measured execution, and systems built to survive real
+              enterprise complexity.
             </p>
 
             <div className="flex flex-col items-center gap-1.5">

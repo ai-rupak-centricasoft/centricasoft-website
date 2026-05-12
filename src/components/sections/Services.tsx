@@ -1,9 +1,9 @@
 "use client";
 
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { ScrollCards, type iScrollCardsProps } from "@/components/ui/scroll-cards";
+import { ServicesCarousel, type ServicesCarouselItem } from "@/components/ui/services-carousel";
 
-const SERVICE_CARDS: iScrollCardsProps["items"] = [
+const SERVICE_CARDS: ServicesCarouselItem[] = [
   {
     title: "Agentic AI & Autonomous Agents",
     description:
@@ -62,25 +62,21 @@ const SERVICE_CARDS: iScrollCardsProps["items"] = [
 
 export function Services() {
   return (
-    <section className="relative bg-[#001234] text-white">
-      <div className="sticky top-0 z-20 border-b border-white/[0.06] bg-[#001234]/98 backdrop-blur-sm">
-        <div className="container-x flex flex-col gap-3 py-6 md:py-8 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <SectionLabel number="02">Services</SectionLabel>
-            <h2 className="mt-2 font-heading font-bold leading-[1.1] text-white text-[clamp(18px,3.5vw,32px)]">
-              What we build, <span className="text-white/35">end to end.</span>
-            </h2>
-          </div>
-          <p className="max-w-[32ch] text-[13px] leading-[1.7] text-white/35 sm:text-right">
-            Six core practices. <br className="hidden sm:block" />
-            Scroll to explore each one.
-          </p>
-        </div>
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#F4F7FF] to-[#E5EDFD] pt-[clamp(40px,6vw,80px)] pb-12 md:pb-24">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/60 via-transparent to-transparent pointer-events-none" />
+      
+      <div className="container-x relative z-10 mb-8 md:mb-12">
+        <SectionLabel number="02">Services</SectionLabel>
       </div>
-
-      <ScrollCards items={SERVICE_CARDS} />
-
-      <div className="h-16 md:h-20" />
+      
+      <div className="w-full relative z-10">
+        <ServicesCarousel
+          title={<>What we build, end to end</>}
+          subtitle="Six core practices. Swipe to explore each one."
+          items={SERVICE_CARDS}
+        />
+      </div>
     </section>
   );
 }
+

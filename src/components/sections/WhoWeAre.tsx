@@ -5,7 +5,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export function WhoWeAre() {
   return (
-    <section className="py-[clamp(72px,9vw,120px)]">
+    <section className="pt-[clamp(72px,9vw,120px)] pb-[clamp(32px,5vw,64px)]">
       <div className="container-x">
         <SectionLabel number="01">Who We Are</SectionLabel>
 
