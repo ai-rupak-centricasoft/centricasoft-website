@@ -61,19 +61,19 @@ export const OFFICE_LOCATIONS = [
     city: "Los Angeles",
     region: "California",
     country: "United States",
-    
+    note: "North America hub",
   },
   {
     city: "Bengaluru",
     region: "Karnataka",
     country: "India",
-    
+    note: "Engineering hub",
   },
   {
     city: "Kolkata",
     region: "West Bengal",
     country: "India",
-    
+    note: "Operations hub",
   },
 ] as const;
 

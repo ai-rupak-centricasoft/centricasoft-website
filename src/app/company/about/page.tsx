@@ -60,7 +60,7 @@ const OFFICES = [
     country: "United States",
     city: "Los Angeles",
     timezone: "PST / UTC-8",
-    
+    note: "North America hub",
     flagImage: "https://flagcdn.com/w640/us.png",
     team: "Strategy, client success, and solutions architecture",
     capabilities: [
@@ -74,7 +74,7 @@ const OFFICES = [
     country: "India",
     city: "Bengaluru",
     timezone: "IST / UTC+5:30",
-    
+    note: "Engineering hub",
     flagImage: "https://flagcdn.com/w640/in.png",
     team: "Platform engineering and AI delivery",
     capabilities: [
@@ -88,7 +88,7 @@ const OFFICES = [
     country: "India",
     city: "Kolkata",
     timezone: "IST / UTC+5:30",
-    
+    note: "Operations hub",
     flagImage: "https://flagcdn.com/w640/in.png",
     team: "Analytics, QA, and delivery operations",
     capabilities: [
@@ -341,7 +341,7 @@ export default function AboutPage() {
             Three offices. <span className="text-gradient-brand">One delivery rhythm.</span>
           </h2>
           <p className="mt-6 max-w-[680px] text-[16px] leading-[1.7] text-[var(--ink-2)]">
-            Our follow-the-sun model now runs across San Francisco, Bengaluru, and Kolkata so
+            Our follow-the-sun model now runs across Los Angeles, Bengaluru, and Kolkata so
             strategy, engineering, and delivery operations can move in a continuous loop.
           </p>
 

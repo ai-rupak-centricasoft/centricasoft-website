@@ -13,7 +13,7 @@ export interface FeatureCarouselItem {
   organization: string;
 }
 
-interface FeatureCarouselProps extends React.HTMLAttributes<HTMLDivElement> {
+interface FeatureCarouselProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
   title: React.ReactNode;
   subtitle: string;
   items: FeatureCarouselItem[];
