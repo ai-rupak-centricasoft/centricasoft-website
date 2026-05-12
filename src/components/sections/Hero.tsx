@@ -52,14 +52,16 @@ export function Hero() {
             initial="hidden"
             animate="show"
             variants={containerVariants}
-            className="mx-auto flex max-w-[860px] flex-col items-center gap-7"
+            className="relative isolate mx-auto flex max-w-[860px] flex-col items-center gap-7 px-4 py-6 sm:px-8"
           >
+            <div className="pointer-events-none absolute inset-x-0 top-[16%] -z-10 h-[78%] rounded-[40px] bg-[radial-gradient(circle_at_center,rgba(4,12,28,0.52)_0%,rgba(4,12,28,0.28)_48%,transparent_78%)] blur-3xl" />
+
             <motion.div
               variants={itemVariants}
-              className="inline-flex items-center gap-3 rounded-full border border-white/12 bg-black/18 px-4 py-2 backdrop-blur-md"
+              className="inline-flex items-center gap-3 rounded-full border border-white/18 bg-black/34 px-4 py-2 shadow-[0_8px_30px_rgba(0,0,0,0.26)] backdrop-blur-md"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-[#7DE7FF]" />
-              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/62">
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/82">
                 Agentic AI, data platforms, and analytics delivery
               </span>
             </motion.div>
@@ -79,7 +81,7 @@ export function Hero() {
 
             <motion.p
               variants={itemVariants}
-              className="max-w-[640px] text-[15px] leading-[1.8] tracking-[-0.01em] text-white/68 sm:text-[17px]"
+              className="max-w-[640px] text-[15px] leading-[1.8] tracking-[-0.01em] text-white/86 sm:text-[17px]"
             >
               We build agentic workflows, GenAI products, and governed data foundations that help
               modern enterprises move from experimentation to dependable operating capability.
@@ -114,14 +116,14 @@ export function Hero() {
             transition={{ duration: 0.9, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col items-center gap-5"
           >
-            <p className="max-w-[540px] text-[13px] leading-[1.8] tracking-[0.01em] text-white/46 sm:text-[14px]">
+            <p className="max-w-[540px] text-[13px] leading-[1.8] tracking-[0.01em] text-white/72 sm:text-[14px]">
               Strategic architecture, measured execution, and systems built to survive real
               enterprise complexity.
             </p>
 
             <div className="flex flex-col items-center gap-1.5">
-              <span className="font-mono text-[9px] tracking-[0.22em] text-white/32">SCROLL</span>
-              <div className="relative h-8 w-px overflow-hidden rounded-full bg-white/14">
+              <span className="font-mono text-[9px] tracking-[0.22em] text-white/52">SCROLL</span>
+              <div className="relative h-8 w-px overflow-hidden rounded-full bg-white/22">
                 <motion.div
                   className="absolute left-0 top-0 h-full w-full rounded-full bg-gradient-to-b from-white/70 to-[#1EBFFF]/70"
                   animate={{ y: ["-100%", "100%"] }}

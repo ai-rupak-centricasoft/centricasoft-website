@@ -1,27 +1,26 @@
 "use client";
+
 import * as React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-
-// ─── Types ────────────────────────────────────────────────────────────────────
 
 export interface SmoothScrollHeroProps {
   /** Extra scroll travel (px) before the card fully expands. @default 900 */
   scrollHeight?: number;
-  /** Fixed navbar height (px) — card top starts below this. @default 72 */
+  /** Fixed navbar height (px) the card top starts below. @default 72 */
   navbarHeight?: number;
   /** Gap (px) between navbar bottom and card top. @default 10 */
   gapTop?: number;
-  /** Side margin (px) on left + right. @default 20 */
+  /** Side margin (px) on left and right. @default 20 */
   gapSide?: number;
   /**
    * Bottom gap expressed as % of viewport height.
-   * 30 = card occupies ~60 % of the screen at rest (like the Eucloid reference).
+   * 30 = card occupies about 60% of the screen at rest.
    * @default 30
    */
   gapBottomVh?: number;
-  /** Border-radius (px) of the card at rest. @default 16 */
+  /** Border radius (px) of the card at rest. @default 16 */
   startRadius?: number;
-  /** Video URL — used as the background when provided. */
+  /** Video URL used as the background when provided. */
   videoSrc?: string;
   /** Fallback / poster image for desktop. */
   desktopImage?: string;
@@ -31,11 +30,8 @@ export interface SmoothScrollHeroProps {
   children?: React.ReactNode;
 }
 
-// ─── Component ───────────────────────────────────────────────────────────────
-
 /**
- * Sticky card that starts as a compact inset box (white space visible below)
- * and expands to full-screen as the user scrolls.
+ * Sticky card that starts as a compact inset box and expands to full-screen on scroll.
  */
 export function SmoothScrollHeroBackground({
   scrollHeight = 900,
@@ -51,7 +47,6 @@ export function SmoothScrollHeroBackground({
 }: SmoothScrollHeroProps) {
   const { scrollY } = useScroll();
 
-  // Track viewport height so we can express the bottom gap in vh
   const [winH, setWinH] = React.useState(768);
   React.useLayoutEffect(() => {
     setWinH(window.innerHeight);
@@ -62,26 +57,19 @@ export function SmoothScrollHeroBackground({
 
   const bottomInsetPx = (gapBottomVh / 100) * winH;
 
-  // Insets animate from their rest values → 0 (full-screen)
   const top = useTransform(scrollY, [0, scrollHeight], [navbarHeight + gapTop, 0]);
   const side = useTransform(scrollY, [0, scrollHeight], [gapSide, 0]);
   const bottom = useTransform(scrollY, [0, scrollHeight], [bottomInsetPx, 0]);
 
-  // Border-radius disappears before card is fully expanded
   const radius = useTransform(scrollY, [0, scrollHeight * 0.65], [startRadius, 0]);
-
-  // Subtle parallax zoom on the media
   const scale = useTransform(scrollY, [0, scrollHeight + 300], [1.08, 1.0]);
 
   return (
-    // Outer: full-screen sticky anchor — transparent, just provides the sticky point
     <div className="sticky top-0 h-screen w-full">
-      {/* Inner: the actual visible card — absolutely inset, clips all children */}
       <motion.div
         className="absolute overflow-hidden bg-black"
         style={{ top, left: side, right: side, bottom, borderRadius: radius }}
       >
-        {/* ── Media layer ── */}
         {videoSrc ? (
           <motion.div className="absolute inset-0" style={{ scale }}>
             <video
@@ -118,30 +106,35 @@ export function SmoothScrollHeroBackground({
           </>
         )}
 
-        {/* ── Vignette — light touch, lets the image breathe ── */}
         <div
           className="pointer-events-none absolute inset-0"
           aria-hidden
           style={{
             background: [
-              /* subtle dark tint — just enough for text contrast */
-              "rgba(0, 5, 18, 0.30)",
-              /* gentle radial — edges fade without killing the image */
-              "radial-gradient(ellipse 100% 85% at 50% 50%, transparent 35%, rgba(0,4,16,0.55) 100%)",
-              /* bottom scrim for the subtitle text */
-              "linear-gradient(to top, rgba(0,3,14,0.72) 0%, transparent 38%)",
+              "rgba(0, 5, 18, 0.42)",
+              "radial-gradient(ellipse 100% 85% at 50% 50%, rgba(0,8,22,0.06) 12%, rgba(0,4,16,0.68) 100%)",
+              "linear-gradient(to top, rgba(0,3,14,0.82) 0%, rgba(0,3,14,0.22) 42%, transparent 68%)",
+              "linear-gradient(to bottom, rgba(0,6,18,0.34) 0%, transparent 28%)",
             ].join(", "),
           }}
         />
 
-        {/* ── Content slot ── */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          aria-hidden
+          style={{
+            background:
+              "radial-gradient(circle at 50% 42%, rgba(8,18,38,0.24) 0%, rgba(8,18,38,0.10) 34%, transparent 62%)",
+            backdropFilter: "blur(2px) saturate(88%) brightness(0.92)",
+            WebkitBackdropFilter: "blur(2px) saturate(88%) brightness(0.92)",
+          }}
+        />
+
         {children && <div className="absolute inset-0 flex flex-col">{children}</div>}
       </motion.div>
     </div>
   );
 }
-
-// ─── Standalone default export ────────────────────────────────────────────────
 
 const SmoothScrollHero: React.FC<SmoothScrollHeroProps> = ({ scrollHeight = 900, ...rest }) => (
   <div style={{ height: `calc(${scrollHeight}px + 100vh)` }} className="relative w-full">
