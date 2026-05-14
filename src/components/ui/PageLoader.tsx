@@ -1,13 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 /**
  * First-load intro overlay (1.2s total):
- *  0.00 – 0.70s  hex outline draws via stroke-dashoffset
- *  0.55 – 0.95s  wordmark fades in with subtle rise
- *  0.95 – 1.20s  full overlay fades out
+ *  0.00 - 0.65s  logo mark scales in with soft rotation and blur release
+ *  0.35 - 0.90s  wordmark fades in with subtle rise
+ *  0.95 - 1.20s  full overlay fades out
  * Session-scoped: only shows once per browser session.
  */
 export function PageLoader() {
@@ -38,53 +39,33 @@ export function PageLoader() {
           className="fixed inset-0 z-[10000] flex items-center justify-center bg-[var(--bg)]"
           aria-hidden
         >
-          <div className="flex flex-col items-center gap-5">
-            <svg
-              width="72"
-              height="72"
-              viewBox="0 0 32 32"
-              fill="none"
-              className="overflow-visible"
-            >
-              <defs>
-                <linearGradient
-                  id="loader-hexg"
-                  x1="0"
-                  y1="0"
-                  x2="32"
-                  y2="32"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stopColor="#002057" />
-                  <stop offset="1" stopColor="#1EBFFF" />
-                </linearGradient>
-              </defs>
-              <motion.path
-                d="M16 2L28.124 9V23L16 30L3.876 23V9L16 2Z"
-                stroke="url(#loader-hexg)"
-                strokeWidth={1.5}
-                strokeLinejoin="round"
-                fill="transparent"
-                initial={{ pathLength: 0, opacity: 0.6 }}
-                animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0.7, ease: [0.65, 0, 0.35, 1] }}
-              />
-              <motion.path
-                d="M16 9L22 12.5V19.5L16 23L10 19.5V12.5L16 9Z"
-                fill="url(#loader-hexg)"
-                initial={{ opacity: 0, scale: 0.6 }}
-                animate={{ opacity: 1, scale: 1 }}
-                style={{ transformOrigin: "16px 16px" }}
-                transition={{ duration: 0.4, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              />
-            </svg>
+          <div className="relative flex flex-col items-center gap-5">
             <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              className="font-display text-[20px] font-semibold tracking-tight text-[var(--navy)]"
+              initial={{ opacity: 0, scale: 0.72, rotate: -10, filter: "blur(10px)" }}
+              animate={{ opacity: 1, scale: 1, rotate: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              className="relative"
             >
-              CentricaSoft
+              <div className="absolute inset-0 rounded-[1.25rem] bg-[radial-gradient(circle_at_center,rgba(30,191,255,0.22),transparent_68%)] blur-2xl" />
+              <Image
+                src="/assest/logo.webp"
+                alt="CentricaSoft loader mark"
+                width={88}
+                height={88}
+                priority
+                className="relative h-[4.8rem] w-[4.8rem] object-contain"
+              />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10, filter: "blur(6px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.45, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="font-sans text-[1.5rem] font-bold leading-none tracking-[-0.01em]"
+            >
+              <span className="inline-block bg-[linear-gradient(90deg,#3341A7_0%,#3053B3_22%,#2B6EC6_46%,#238AD9_70%,#18ADF1_100%)] bg-clip-text text-transparent">
+                CentricaSoft
+              </span>
             </motion.div>
           </div>
         </motion.div>
