@@ -6,8 +6,8 @@ import { ScrollCounter } from "@/components/ui/ScrollCounter";
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const STATS = [
-  { value: 50, suffix: "+", label: "Projects Delivered" },
-  { value: 30,  suffix: "+", label: "Expert Consultants" },
+  { value: 100, suffix: "+", label: "Projects Delivered" },
+  { value: 50,  suffix: "+", label: "Expert Consultants" },
   { value: 8,   suffix: "+", label: "Industries Served"  },
 ] as const;
 

@@ -11,7 +11,7 @@ import { CTAStrip } from "@/components/sections/CTAStrip";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "CentricaSoft - Intelligence, Engineered.",
+  title: "CentricaSoft",
   description:
     "CentricaSoft builds AI Agents, GenAI platforms, and enterprise data infrastructure that scale without limits.",
   path: "/",
