@@ -5,16 +5,16 @@ import Link from "next/link";
 
 export function Logo({ light = false }: { light?: boolean }) {
   return (
-    <Link href="/" className="group inline-flex items-center gap-3">
+    <Link href="/" className="group inline-flex items-center gap-3.5 whitespace-nowrap">
       <Image
-        width={36}
-        height={36}
+        width={40}
+        height={40}
         src="/assest/logo.webp"
         alt="CentricaSoft logo"
         priority
-        className="h-9 w-9 rounded-[4px] object-contain transition-transform duration-[600ms] ease-out group-hover:rotate-[8deg]"
+        className="h-10 w-10 rounded-[4px] object-contain transition-transform duration-[600ms] ease-out group-hover:rotate-[8deg]"
       />
-      <span className="font-sans text-[20px] font-bold leading-none tracking-[0]">
+      <span className="font-sans text-[1.375rem] xl:text-[1.45rem] font-bold leading-none tracking-[-0.01em]">
         {light ? (
           <span className="text-white">CentricaSoft</span>
         ) : (

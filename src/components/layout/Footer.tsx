@@ -42,9 +42,14 @@ const SOCIALS = [
   },
 ];
 
+const FOOTER_LABEL_CLASS =
+  "whitespace-nowrap font-mono text-[0.72rem] sm:text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-[rgba(168,207,230,0.5)]";
+const FOOTER_LINK_CLASS =
+  "inline-block text-[0.96rem] sm:whitespace-nowrap sm:text-[1rem] font-medium leading-[1.7] text-white/72 transition-all hover:translate-x-1 hover:text-[var(--sky)]";
+
 function HexLogo() {
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-3.5 whitespace-nowrap">
       {/* <svg width="36" height="40" viewBox="0 0 36 40" fill="none" aria-hidden>
         <defs>
           <linearGradient id="footer-hex" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -66,11 +71,11 @@ function HexLogo() {
       <Image
         src="/assest/logo.webp"
         alt="CentricaSoft"
-        width={36}
+        width={40}
         height={40}
-        className="h-8 w-8 rounded-[4px] object-contain transition-transform duration-[600ms] ease-out "
+        className="h-10 w-10 rounded-[4px] object-contain transition-transform duration-[600ms] ease-out "
       />
-      <span className="font-display text-[18px] font-semibold tracking-[-0.01em]">
+      <span className="font-display text-[1.375rem] sm:text-[1.45rem] font-semibold tracking-[-0.01em]">
         CentricaSoft
       </span>
     </div>
@@ -86,10 +91,10 @@ export function Footer() {
   return (
     <footer className="border-t border-white/[0.06] bg-[var(--navy-deep)] text-white">
       <div className="container-x pb-8 pt-20">
-        <div className="mb-16 grid grid-cols-1 gap-12 lg:grid-cols-[280px_1fr_280px] lg:gap-[60px]">
-          <div>
+        <div className="mb-16 lg:grid lg:grid-cols-[minmax(18rem,1.15fr)_minmax(11rem,0.95fr)_minmax(10rem,0.8fr)_minmax(10rem,0.85fr)_minmax(15rem,1.1fr)] lg:items-start lg:gap-x-12 xl:gap-x-16">
+          <div className="max-w-[18rem] lg:max-w-[17rem]">
             <HexLogo />
-            <p className="mt-4 max-w-[240px] text-[14px] leading-[1.7] text-white/45">
+            <p className="mt-4 max-w-[15rem] text-[0.975rem] leading-[1.75] text-white/52">
               Building AI agents, GenAI platforms, and enterprise data infrastructure since day one.
             </p>
             <div className="mt-7 flex gap-2.5">
@@ -108,19 +113,14 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:gap-10">
+          <div className="mt-12 grid grid-cols-2 gap-x-8 gap-y-10 sm:gap-x-10 sm:gap-y-12 md:gap-x-12 lg:mt-0 lg:contents">
             {Object.entries(LINKS).map(([section, items]) => (
-              <div key={section}>
-                <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.12em] text-[rgba(168,207,230,0.5)]">
-                  {section}
-                </p>
-                <ul className="flex flex-col gap-2.5">
+              <div key={section} className="min-w-0">
+                <p className={`mb-4 ${FOOTER_LABEL_CLASS}`}>{section}</p>
+                <ul className="flex flex-col gap-3.5 sm:gap-4">
                   {items.map((item) => (
                     <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        className="inline-block text-[14px] text-white/65 transition-all hover:translate-x-1 hover:text-[var(--sky)]"
-                      >
+                      <Link href={item.href} className={FOOTER_LINK_CLASS}>
                         {item.label}
                       </Link>
                     </li>
@@ -128,41 +128,41 @@ export function Footer() {
                 </ul>
               </div>
             ))}
-          </div>
 
-          <div>
-            <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.12em] text-[rgba(168,207,230,0.5)]">
-              Global Presence
-            </p>
-            <div className="flex flex-col gap-4">
-              {OFFICE_LOCATIONS.map((office) => (
-                <div key={`${office.city}-${office.country}`}>
-                  <p className="mb-0.5 font-heading text-[14px] font-semibold text-white/85">
-                    {office.city}, {office.region}
-                  </p>
-                  <p className="text-[13px] text-white/45">{office.country}</p>
-                </div>
-              ))}
-              <a
-                href={`mailto:${SITE.email}`}
-                className="text-[13px] text-[var(--sky)] transition-colors hover:text-white"
-              >
-                {SITE.email}
-              </a>
+            <div className="min-w-0">
+              <p className={`mb-4 ${FOOTER_LABEL_CLASS}`}>Global Presence</p>
+              <div className="flex flex-col gap-4">
+                {OFFICE_LOCATIONS.map((office) => (
+                  <div key={`${office.city}-${office.country}`}>
+                    <p className="mb-0.5 font-heading text-[0.975rem] sm:whitespace-nowrap sm:text-[1rem] font-semibold tracking-[-0.01em] text-white/88">
+                      {office.city}, {office.region}
+                    </p>
+                    <p className="text-[0.9rem] sm:whitespace-nowrap sm:text-[0.95rem] text-white/52">
+                      {office.country}
+                    </p>
+                  </div>
+                ))}
+                <a
+                  href={`mailto:${SITE.email}`}
+                  className="pt-1 text-[0.9rem] sm:whitespace-nowrap sm:text-[0.95rem] font-medium text-[var(--sky)] transition-colors hover:text-white"
+                >
+                  {SITE.email}
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/[0.06] pt-6">
-          <p className="text-[12px] text-white/30">
-            &copy; 2025 CentricaSoft LLC. All rights reserved.
+          <p className="text-[0.85rem] sm:text-[0.9rem] text-white/36">
+            &copy; 2026 CentricaSoft LLC. All rights reserved.
           </p>
           <div className="flex gap-6">
             {legalLinks.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-[12px] text-white/30 transition-colors hover:text-white/60"
+                className="text-[0.85rem] sm:text-[0.9rem] font-medium text-white/36 transition-colors hover:text-white/60"
               >
                 {item.label}
               </Link>

@@ -96,7 +96,7 @@ export function Hero() {
                 variant="white"
                 className="!h-[50px] !gap-2 !px-7 !text-[14px] !font-medium sm:!h-[54px] sm:!px-10 sm:!text-[15px]"
               >
-                See What We Build
+                 What We Build
                 <ArrowRight className="h-4 w-4" />
               </MagneticButton>
 

@@ -61,6 +61,12 @@ const WHAT_WE_DO_INDUSTRIES = [
   "Real Estate",
 ];
 
+const MEGA_LABEL_CLASS =
+  "label-mono !text-[0.72rem] md:!text-[0.76rem] !tracking-[0.18em]";
+const MEGA_BODY_CLASS = "text-[0.95rem] md:text-[0.975rem] leading-[1.7]";
+const MEGA_TITLE_CLASS =
+  "font-heading text-[0.975rem] xl:text-[1rem] font-semibold leading-[1.35] tracking-[-0.01em]";
+
 export function MegaNav({ active, onClose }: { active: Panel | null; onClose: () => void }) {
   return (
     <AnimatePresence>
@@ -83,14 +89,16 @@ export function MegaNav({ active, onClose }: { active: Panel | null; onClose: ()
 function PanelHeader({ title, sub }: { title: string; sub: string }) {
   return (
     <div>
-      <h3 className="font-display text-[22px] text-[var(--ink)]">{title}</h3>
-      <p className="mt-3 max-w-[200px] text-[14px] leading-[1.7] text-[var(--ink-3)]">{sub}</p>
+      <h3 className="font-display text-[1.5rem] lg:text-[1.625rem] font-semibold text-[var(--ink)]">
+        {title}
+      </h3>
+      <p className={`mt-3 max-w-[14rem] text-[var(--ink-3)] ${MEGA_BODY_CLASS}`}>{sub}</p>
     </div>
   );
 }
 
 function ColLabel({ children }: { children: string }) {
-  return <div className="label-mono mb-5">{children}</div>;
+  return <div className={`${MEGA_LABEL_CLASS} mb-5`}>{children}</div>;
 }
 
 function NavRow({ to, icon, title }: { to: string; icon: React.ReactNode; title: string }) {
@@ -105,7 +113,7 @@ function NavRow({ to, icon, title }: { to: string; icon: React.ReactNode; title:
           {icon}
         </span>
         <div className="min-w-0 flex-1 pr-1">
-          <div className="font-heading text-[14px] font-semibold leading-[1.3] text-[var(--ink)] group-hover:text-[var(--navy)]">
+          <div className={`${MEGA_TITLE_CLASS} text-[var(--ink)] group-hover:text-[var(--navy)]`}>
             {title}
           </div>
         </div>
@@ -131,12 +139,14 @@ function CompanyNavRow({
       className="group block rounded-lg px-3 py-3 transition-colors duration-150 hover:bg-[var(--surface-2)]"
     >
       <div className="flex items-start gap-3">
-        <span className="mt-0.5 text-[14px] text-[var(--sky-deep)]">{icon}</span>
+        <span className="mt-0.5 text-[0.95rem] text-[var(--sky-deep)]">{icon}</span>
         <div className="min-w-0 flex-1">
-          <div className="font-heading text-[14px] font-semibold text-[var(--ink)] transition-colors group-hover:text-[var(--navy)]">
+          <div
+            className={`${MEGA_TITLE_CLASS} text-[var(--ink)] transition-colors group-hover:text-[var(--navy)]`}
+          >
             {title}
           </div>
-          <div className="mt-1 text-[12.5px] leading-[1.55] text-[var(--ink-3)]">{desc}</div>
+          <div className="mt-1 text-[0.9rem] leading-[1.6] text-[var(--ink-3)]">{desc}</div>
         </div>
       </div>
     </Link>
@@ -162,11 +172,11 @@ function WhatWeDoPanel() {
       </div>
       <div className="col-span-3">
         <ColLabel>Industries</ColLabel>
-        <ul className="grid grid-cols-2 gap-2 text-[11px] text-[var(--ink-2)]">
+        <ul className="grid grid-cols-2 gap-2 text-[0.875rem] md:text-[0.9rem] font-medium text-[var(--ink-2)]">
           {WHAT_WE_DO_INDUSTRIES.map((item) => (
             <li
               key={item}
-              className="rounded-lg border border-[var(--border)] bg-[var(--surface-2)] px-2.5 py-2 leading-[1.25] transition-colors hover:border-[var(--sky)] hover:bg-white hover:text-[var(--navy)]"
+              className="rounded-lg border border-[var(--border)] bg-[var(--surface-2)] px-2.5 py-2 leading-[1.35] transition-colors hover:border-[var(--sky)] hover:bg-white hover:text-[var(--navy)]"
             >
               {item}
             </li>
@@ -189,28 +199,30 @@ function ProductsPanel() {
           href="/products/nubo"
           className="group relative block overflow-hidden rounded-2xl border-l-[3px] border-transparent bg-[var(--surface-2)] p-6 transition-colors hover:border-[var(--sky-bright)]"
         >
-          <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-brand" />
+          <div className="absolute bottom-0 left-0 top-0 w-[3px] bg-gradient-brand" />
           <div className="flex items-start justify-between gap-6">
             <div>
               <div className="mb-2 flex items-center gap-2">
-                <span className="font-display text-[20px] text-[var(--navy)]">Nubo</span>
-                <span className="label-mono text-[var(--sky-deep)]">Featured</span>
+                <span className="font-display text-[1.375rem] font-semibold text-[var(--navy)]">
+                  Nubo
+                </span>
+                <span className={`${MEGA_LABEL_CLASS} !text-[var(--sky-deep)]`}>Featured</span>
               </div>
-              <p className="text-[14px] leading-[1.6] text-[var(--ink-2)]">
+              <p className={`${MEGA_BODY_CLASS} text-[var(--ink-2)]`}>
                 The Enterprise GenAI Brain - production-grade chatbot platform.
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {["RAG", "Prompt Engineering", "LLM"].map((tag) => (
                   <span
                     key={tag}
-                    className="label-mono rounded-md bg-white px-2.5 py-1 text-[10px] text-[var(--sky-deep)]"
+                    className={`${MEGA_LABEL_CLASS} rounded-md bg-white px-2.5 py-1 !text-[0.68rem] !tracking-[0.14em] !text-[var(--sky-deep)]`}
                   >
                     {tag}
                   </span>
                 ))}
               </div>
-              <div className="mt-5 text-[13px] font-medium text-[var(--sky-deep)]">
-                Explore Nubo →
+              <div className="mt-5 text-[0.95rem] font-semibold text-[var(--sky-deep)]">
+                Explore Nubo ->
               </div>
             </div>
           </div>
@@ -231,19 +243,19 @@ function CompanyPanel() {
         <div className="space-y-2">
           <CompanyNavRow
             to="/company/about"
-            icon="○"
+            icon="01"
             title="About Us"
             desc="Our story, mission, and team."
           />
           <CompanyNavRow
             to="/company/clients"
-            icon="◇"
+            icon="02"
             title="Clients"
             desc="Enterprises who trust CentricaSoft."
           />
           <CompanyNavRow
             to="/company/partners"
-            icon="△"
+            icon="03"
             title="Partners"
             desc="Our technology and delivery ecosystem."
           />
@@ -252,14 +264,16 @@ function CompanyPanel() {
       <div className="col-span-4">
         <ColLabel>Latest</ColLabel>
         <Link href="/insights" className="group block">
-          <div className="label-mono mb-2 text-[var(--sky-deep)]">Insight · Apr 2025</div>
-          <div className="font-heading text-[15px] font-semibold leading-snug text-[var(--ink)] group-hover:text-[var(--navy)]">
+          <div className={`${MEGA_LABEL_CLASS} mb-2 !text-[var(--sky-deep)]`}>Insight - Apr 2026</div>
+          <div className="font-heading text-[1rem] md:text-[1.05rem] font-semibold leading-snug tracking-[-0.01em] text-[var(--ink)] group-hover:text-[var(--navy)]">
             Why agentic AI is the new operating layer for enterprise software
           </div>
-          <div className="mt-2 text-[12.5px] leading-[1.6] text-[var(--ink-3)]">
+          <div className="mt-2 text-[0.9rem] leading-[1.65] text-[var(--ink-3)]">
             A look at how autonomous agents collapse the gap between intent and action.
           </div>
-          <div className="mt-3 text-[12px] text-[var(--sky-deep)]">Read more →</div>
+          <div className="mt-3 text-[0.9rem] font-semibold text-[var(--sky-deep)]">
+            Read more ->
+          </div>
         </Link>
       </div>
     </div>

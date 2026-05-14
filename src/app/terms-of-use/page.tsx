@@ -156,7 +156,7 @@ export default function TermsOfUsePage() {
             </div>
 
             <div className="border-t border-[var(--border)] bg-white px-8 py-6 text-[13px] text-[var(--ink-3)] md:px-10">
-              Last Updated: April 2025
+              Last Updated: April 2026
             </div>
           </div>
         </div>

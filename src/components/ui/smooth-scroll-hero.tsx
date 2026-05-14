@@ -48,14 +48,21 @@ export function SmoothScrollHeroBackground({
   const { scrollY } = useScroll();
 
   const [winH, setWinH] = React.useState(768);
+  const [winW, setWinW] = React.useState(1280);
   React.useLayoutEffect(() => {
     setWinH(window.innerHeight);
-    const onResize = () => setWinH(window.innerHeight);
+    setWinW(window.innerWidth);
+    const onResize = () => {
+      setWinH(window.innerHeight);
+      setWinW(window.innerWidth);
+    };
     window.addEventListener("resize", onResize, { passive: true });
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  const bottomInsetPx = (gapBottomVh / 100) * winH;
+  const isMobile = winW < 768;
+  const effectiveGapBottomVh = isMobile ? Math.max(gapBottomVh - 8, 8) : gapBottomVh;
+  const bottomInsetPx = (effectiveGapBottomVh / 100) * winH;
 
   const top = useTransform(scrollY, [0, scrollHeight], [navbarHeight + gapTop, 0]);
   const side = useTransform(scrollY, [0, scrollHeight], [gapSide, 0]);

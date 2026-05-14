@@ -109,6 +109,12 @@ export function Navbar() {
   const navItemActive = overDarkHero
     ? "bg-white/12 text-white"
     : "bg-[var(--highlight)] text-[var(--navy)]";
+  const desktopNavText =
+    "whitespace-nowrap text-[0.975rem] xl:text-[1rem] font-semibold tracking-[-0.01em]";
+  const mobileNavText =
+    "font-heading text-[clamp(1.5rem,4vw,1.9rem)] font-semibold tracking-[-0.02em]";
+  const mobileMetaText =
+    "font-mono text-[0.72rem] sm:text-[0.76rem] uppercase tracking-[0.22em]";
 
   let closeTimer: ReturnType<typeof setTimeout> | null = null;
   const open = (p: Panel) => {
@@ -131,17 +137,17 @@ export function Navbar() {
       }`}
       onMouseLeave={scheduleClose}
     >
-      <div className="container-x flex items-center justify-between h-[72px]">
+      <div className="container-x flex items-center justify-between h-[4.75rem]">
         <Logo light={overDarkHero} />
 
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav className="hidden lg:flex items-center gap-2 xl:gap-3">
           {NAV_ITEMS.map((item) =>
             item.mega ? (
               <button
                 key={item.label}
                 onMouseEnter={() => open(item.mega as Panel)}
                 onFocus={() => open(item.mega as Panel)}
-                className={`group inline-flex h-10 items-center gap-1.5 rounded-lg px-4 text-[14px] font-medium transition-all duration-150 ${
+                className={`group inline-flex h-11 items-center gap-1.5 rounded-lg px-4 xl:px-[1.125rem] ${desktopNavText} transition-all duration-150 ${
                   active === item.mega ? navItemActive : navItemBase
                 }`}
               >
@@ -157,7 +163,7 @@ export function Navbar() {
                 key={item.label}
                 href={item.href}
                 onMouseEnter={scheduleClose}
-                className={`inline-flex h-10 items-center rounded-lg px-4 text-[14px] font-medium transition-all duration-150 ${
+                className={`inline-flex h-11 items-center rounded-lg px-4 xl:px-[1.125rem] ${desktopNavText} transition-all duration-150 ${
                   currentPath === item.href ? navItemActive : navItemBase
                 }`}
               >
@@ -167,7 +173,7 @@ export function Navbar() {
           )}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-5">
+        <div className="hidden lg:flex items-center gap-6">
           {/* <Link
             href="/contact"
             className="text-[14px] text-[var(--ink-2)] hover:text-[var(--navy)] transition-colors"
@@ -179,8 +185,8 @@ export function Navbar() {
             variant={overDarkHero ? "white" : "primary"}
             className={
               overDarkHero
-                ? "!h-10 !px-6 !text-[13px] !font-medium"
-                : "!h-10 !bg-[#072057] !bg-none !px-6 !text-[13px] !text-white !shadow-none hover:!bg-[#0A2D73]"
+                ? "!h-11 !px-6 !text-[0.95rem] !font-semibold"
+                : "!h-11 !bg-[#072057] !bg-none !px-6 !text-[0.95rem] !font-semibold !text-white !shadow-none hover:!bg-[#0A2D73]"
             }
           >
             Request Consultation
@@ -227,10 +233,10 @@ export function Navbar() {
               </div>
               <div className="container-x flex min-h-[calc(100vh-72px)] flex-col pb-8 pt-8">
                 <div className="mb-6 flex items-center justify-between border-b border-white/10 pb-4">
-                  <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#7DE7FF]">
+                  <span className={`${mobileMetaText} text-[#7DE7FF]`}>
                     Navigation
                   </span>
-                  <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/45">
+                  <span className={`${mobileMetaText} text-white/45`}>
                     CS / 2026
                   </span>
                 </div>
@@ -261,9 +267,9 @@ export function Navbar() {
                       ) : (
                         <Link
                           href={item.href}
-                          className="group flex items-center gap-4 py-5 font-heading text-[24px] font-bold text-white/90"
+                          className={`group flex items-center gap-4 py-5 ${mobileNavText} text-white/90`}
                         >
-                          <span className="font-mono text-[11px] font-medium text-[#7DE7FF]/70">
+                          <span className="font-mono text-[0.72rem] sm:text-[0.76rem] font-semibold text-[#7DE7FF]/70">
                             {String(i + 1).padStart(2, "0")}
                           </span>
                           <span className="transition-colors group-hover:text-[#7DE7FF]">
@@ -276,7 +282,7 @@ export function Navbar() {
                 </div>
 
                 <div className="mt-auto pt-12">
-                  <div className="mb-4 grid grid-cols-3 gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-white/45">
+                  <div className="mb-4 grid grid-cols-3 gap-2 font-mono text-[0.7rem] sm:text-[0.74rem] uppercase tracking-[0.16em] text-white/45">
                     <span className="rounded border border-white/10 px-2 py-2 text-center">AI</span>
                     <span className="rounded border border-white/10 px-2 py-2 text-center">
                       Data
@@ -287,10 +293,10 @@ export function Navbar() {
                   </div>
                   <Link
                     href="/contact"
-                    className="group flex h-[54px] w-full items-center justify-between rounded bg-white px-5 font-heading text-[19px] font-bold text-[var(--navy)] shadow-[0_18px_40px_-24px_rgba(255,255,255,0.45)] transition-colors hover:bg-white/92"
+                    className="group flex h-[3.5rem] w-full items-center justify-between rounded bg-white px-5 font-heading text-[1.125rem] sm:text-[1.1875rem] font-semibold tracking-[-0.02em] text-[var(--navy)] shadow-[0_18px_40px_-24px_rgba(255,255,255,0.45)] transition-colors hover:bg-white/92"
                   >
                     <span>Request Consultation</span>
-                    <span className="font-mono text-[13px] transition-transform group-hover:translate-x-1">
+                    <span className="font-mono text-[0.85rem] transition-transform group-hover:translate-x-1">
                       01
                     </span>
                   </Link>
@@ -326,10 +332,10 @@ function MobileNavGroup({
         aria-expanded={open}
         aria-controls={`mobile-subnav-${panel}`}
         onClick={onToggle}
-        className="group flex w-full items-center justify-between py-5 text-left font-heading text-[24px] font-bold text-white/90"
+        className="group flex w-full items-center justify-between py-5 text-left font-heading text-[clamp(1.5rem,4vw,1.9rem)] font-semibold tracking-[-0.02em] text-white/90"
       >
         <span className="flex items-center gap-4">
-          <span className="font-mono text-[11px] font-medium text-[#7DE7FF]/70">
+          <span className="font-mono text-[0.72rem] sm:text-[0.76rem] font-semibold text-[#7DE7FF]/70">
             {String(index).padStart(2, "0")}
           </span>
           <span className="transition-colors group-hover:text-[#7DE7FF]">{label}</span>
@@ -355,7 +361,7 @@ function MobileNavGroup({
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="group/sub flex items-center justify-between border-b border-white/7 py-3 text-[15px] font-medium leading-snug text-white/74 last:border-b-0"
+                  className="group/sub flex items-center justify-between border-b border-white/7 py-3 text-[0.975rem] sm:text-[1.025rem] font-semibold leading-snug tracking-[-0.01em] text-white/74 last:border-b-0"
                 >
                   <span>{link.label}</span>
                   <span className="h-px w-4 bg-[#7DE7FF]/40 transition-all group-hover/sub:w-7 group-hover/sub:bg-[#7DE7FF]" />

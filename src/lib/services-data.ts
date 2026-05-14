@@ -150,7 +150,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     caseStudy: {
       tag: "Healthcare · Agentic AI",
       title: "Autonomous triage agent for a 12-hospital network",
-      outcome: "38% reduction in nurse workload · Q1 2025",
+      outcome: "38% reduction in nurse workload · Q1 2026",
       client: "Top-10 US hospital system",
     },
   },
@@ -286,7 +286,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     caseStudy: {
       tag: "Finance · GenAI Platform",
       title: "Nubo for a top-10 US asset manager",
-      outcome: "Analyst lookup time: hours → seconds · Q1 2025",
+      outcome: "Analyst lookup time: hours → seconds · Q1 2026",
       client: "Top-10 US asset management firm",
     },
   },

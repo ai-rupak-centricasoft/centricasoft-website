@@ -84,7 +84,7 @@ export const CASE_STUDIES = [
     title: "Autonomous triage agent for a 12-hospital network",
     body: "We deployed a clinical agent system that routes patient queries, drafts responses, and escalates edge cases — reducing nurse workload by 38% in the first quarter.",
     author: "Samad Nalagadda",
-    date: "Q2 2025",
+    date: "Q2 2026",
   },
   {
     tag: "Finance · GenAI Platform",
@@ -92,7 +92,7 @@ export const CASE_STUDIES = [
     title: "Nubo for a top-10 US asset manager",
     body: "A RAG-powered research assistant grounded in 12 years of internal filings, cutting analyst lookup time from hours to seconds with full source citations.",
     author: "Amit Basu",
-    date: "Q1 2025",
+    date: "Q1 2026",
   },
   {
     tag: "Logistics · Data Engineering",
@@ -100,7 +100,7 @@ export const CASE_STUDIES = [
     title: "Petabyte ingestion for a global 3PL",
     body: "Re-architected a legacy batch system into a streaming lakehouse on Databricks — 14× faster pipelines and a 62% cut in cloud spend.",
     author: "Shampa Ghosh",
-    date: "Q4 2025",
+    date: "Q4 2026",
   },
 ];
 
