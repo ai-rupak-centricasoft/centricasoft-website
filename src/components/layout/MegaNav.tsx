@@ -222,7 +222,7 @@ function ProductsPanel() {
                 ))}
               </div>
               <div className="mt-5 text-[0.95rem] font-semibold text-[var(--sky-deep)]">
-                Explore Nubo ->
+                Explore Nubo {"->"}
               </div>
             </div>
           </div>
@@ -272,7 +272,7 @@ function CompanyPanel() {
             A look at how autonomous agents collapse the gap between intent and action.
           </div>
           <div className="mt-3 text-[0.9rem] font-semibold text-[var(--sky-deep)]">
-            Read more ->
+            Read more {"->"}
           </div>
         </Link>
       </div>
