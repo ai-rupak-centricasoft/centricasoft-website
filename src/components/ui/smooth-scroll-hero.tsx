@@ -71,6 +71,62 @@ export function SmoothScrollHeroBackground({
   const radius = useTransform(scrollY, [0, scrollHeight * 0.65], [startRadius, 0]);
   const scale = useTransform(scrollY, [0, scrollHeight + 300], [1.08, 1.0]);
 
+  if (isMobile) {
+    return (
+      <div className="relative h-full w-full overflow-hidden bg-black pt-[4.75rem]">
+        <div className="absolute inset-x-0 bottom-0 top-[4.75rem] overflow-hidden bg-black">
+          {videoSrc ? (
+            <video
+              src={videoSrc}
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster={desktopImage}
+              className="absolute inset-0 h-full w-full object-cover"
+              aria-hidden
+            />
+          ) : (
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url(${mobileImage ?? desktopImage})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            />
+          )}
+
+          <div
+            className="pointer-events-none absolute inset-0"
+            aria-hidden
+            style={{
+              background: [
+                "rgba(0, 5, 18, 0.42)",
+                "radial-gradient(ellipse 100% 85% at 50% 50%, rgba(0,8,22,0.06) 12%, rgba(0,4,16,0.68) 100%)",
+                "linear-gradient(to top, rgba(0,3,14,0.82) 0%, rgba(0,3,14,0.22) 42%, transparent 68%)",
+                "linear-gradient(to bottom, rgba(0,6,18,0.34) 0%, transparent 28%)",
+              ].join(", "),
+            }}
+          />
+
+          <div
+            className="pointer-events-none absolute inset-0"
+            aria-hidden
+            style={{
+              background:
+                "radial-gradient(circle at 50% 42%, rgba(8,18,38,0.24) 0%, rgba(8,18,38,0.10) 34%, transparent 62%)",
+              backdropFilter: "blur(2px) saturate(88%) brightness(0.92)",
+              WebkitBackdropFilter: "blur(2px) saturate(88%) brightness(0.92)",
+            }}
+          />
+        </div>
+
+        {children && <div className="relative z-10 flex h-full flex-col">{children}</div>}
+      </div>
+    );
+  }
+
   return (
     <div className="sticky top-0 h-screen w-full">
       <motion.div

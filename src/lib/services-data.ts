@@ -74,8 +74,8 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     expertiseNarrative:
       "CentricaSoft's agentic AI practice spans industries where accuracy and autonomy both matter — healthcare triage, financial research, logistics dispatch, and enterprise knowledge management. We've shipped agent systems handling thousands of decisions per day with full auditability.",
     expertiseGrid: [
-      { value: 2, suffix: "+", label: "Years in LLM research" },
-      { value: 10, suffix: "+", label: "Agent deployments" },
+      { value: 3, suffix: "+", label: "Years in LLM research" },
+      { value: 30, suffix: "+", label: "Agent deployments" },
       { value: 4, suffix: "", label: "Orchestration frameworks" },
       { value: 98, suffix: "%", label: "Task completion accuracy" },
     ],
@@ -196,8 +196,8 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     expertiseNarrative:
       "We've shipped Nubo and bespoke chatbots for asset managers, hospital networks, and global retailers. Every system enforces source citations, role-based access, and full conversation auditability — because enterprise chatbots aren't toys.",
     expertiseGrid: [
-      { value: 10, suffix: "+", label: "Chatbots in production" },
-      { value: 5, suffix: "M", label: "Documents indexed" },
+      { value: 30, suffix: "+", label: "Chatbots in production" },
+      { value: 30, suffix: "M", label: "Documents indexed" },
       { value: 99, suffix: "%", label: "Source citation rate" },
       { value: 200, suffix: "ms", label: "Avg response latency" },
     ],
@@ -333,7 +333,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       "Our data engineering team has migrated petabytes from on-prem mainframes to modern lakehouses, designed CDC pipelines for global logistics platforms, and rebuilt analytics stacks for top-tier retailers. We optimize for cost, latency, and developer ergonomics — in that order.",
     expertiseGrid: [
       { value: 3, suffix: "+", label: "Years in cloud data" },
-      { value: 20, suffix: "+", label: "Migrations delivered" },
+      { value: 30, suffix: "+", label: "Migrations delivered" },
       { value: 3, suffix: "", label: "Cloud platforms" },
       { value: 1, suffix: "M", label: "Daily ingestion" },
     ],
@@ -464,8 +464,8 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     expertiseNarrative:
       "We've built analytics platforms for finance, retail, and healthcare — turning warehouses full of unused data into the operating system of the business. Every dashboard we ship is tied to a decision; every model we train ships to production.",
     expertiseGrid: [
-      { value: 10, suffix: "+", label: "Dashboards shipped" },
-      { value: 5, suffix: "+", label: "ML models in prod" },
+      { value: 50, suffix: "+", label: "Dashboards shipped" },
+      { value: 10, suffix: "+", label: "ML models in prod" },
       { value: 5, suffix: "", label: "BI platforms mastered" },
       { value: 100, suffix: "%", label: "Models with monitoring" },
     ],

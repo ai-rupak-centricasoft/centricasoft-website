@@ -13,3 +13,4 @@ export const metadata: Metadata = buildMetadata({
 export default function AgenticAiPage() {
   return <ServicePage content={SERVICE_CONTENT["agentic-ai"]} />;
 }
+

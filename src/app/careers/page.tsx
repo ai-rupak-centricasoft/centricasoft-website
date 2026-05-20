@@ -136,7 +136,7 @@ const CULTURE_BENTO_COLUMNS = [
 ] as const;
 
 export default function CareersPage() {
-  const [open, setOpen] = useState<number | null>(0);
+  const [open, setOpen] = useState<number | null>(null);
 
   return (
     <>
@@ -167,16 +167,33 @@ export default function CareersPage() {
         </div>
       </PageHero>
 
-      <section className="bg-[#f3f7fb] py-32 pb-32">
+      <section className="bg-[var(--surface-2)] py-20 md:py-28">
         <div className="container-x">
-          <div className="relative mb-16 overflow-hidden border border-[#dbe7f1] bg-white px-6 py-8 md:px-10 md:py-10">
+          <div className="relative mb-16 overflow-hidden border border-[var(--border-2)] bg-white px-6 py-8 shadow-[0_20px_60px_-46px_rgba(0,32,87,0.28)] md:px-10 md:py-10">
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 opacity-60"
+              className="pointer-events-none absolute inset-0 opacity-55"
               style={{
                 background:
-                  "radial-gradient(60% 90% at 0% 100%, rgba(30,191,255,0.08), transparent 68%), radial-gradient(52% 80% at 100% 0%, rgba(30,191,255,0.06), transparent 68%)",
+                  "radial-gradient(36% 56% at 96% 6%, rgba(0,32,87,0.055), transparent 72%), linear-gradient(180deg, rgba(255,255,255,1), rgba(247,251,254,0.55))",
               }}
+            />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 opacity-[0.28]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgba(87,151,190,0.16) 1px, transparent 1px), linear-gradient(90deg, rgba(87,151,190,0.16) 1px, transparent 1px)",
+                backgroundSize: "42px 42px",
+                maskImage:
+                  "linear-gradient(90deg, black 0%, rgba(0,0,0,0.7) 62%, transparent 100%)",
+                WebkitMaskImage:
+                  "linear-gradient(90deg, black 0%, rgba(0,0,0,0.7) 62%, transparent 100%)",
+              }}
+            />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full border border-[var(--border-2)]/45"
             />
             <div className="relative">
               <div className="flex items-center gap-4">
@@ -188,13 +205,13 @@ export default function CareersPage() {
               </div>
 
               <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(280px,0.7fr)] lg:items-start">
-                <h2 className="max-w-[700px] font-display text-[clamp(36px,5vw,58px)] leading-[0.98] text-[var(--navy)]">
-                  We're hiring.
+                <h2 className="heading-lg max-w-[700px] text-[var(--navy)]">
+                  We&apos;re hiring.
                   <br />
                   Come join our team!
                 </h2>
 
-                <p className="max-w-[620px] text-[18px] leading-[1.65] text-[#667085]">
+                <p className="body-lg max-w-[620px] text-[var(--ink-2)]">
                   Grow your career and take on meaningful challenges across AI, data, product, and
                   cloud engineering. We build for real enterprise outcomes and we want people who
                   care deeply about craft, ownership, and long-term impact.
@@ -205,7 +222,7 @@ export default function CareersPage() {
 
           <div
             id="open-roles"
-            className="mb-10 scroll-mt-32 flex items-center justify-between gap-6 border-b border-[#cfe0ee] pb-8"
+            className="mb-10 scroll-mt-32 flex items-center justify-between gap-6 border-b border-[var(--border)] pb-8"
           >
             <span className="label-mono !text-[var(--sky-deep)]">02 / Open roles</span>
             <span className="label-mono !text-[var(--sky-deep)]">
@@ -218,7 +235,7 @@ export default function CareersPage() {
               const isOpen = open === i;
 
               return (
-                <div key={role.title} className="border-b border-[#d9e6f1]">
+                <div key={role.title} className="border-b border-[var(--border)]">
                   <button
                     type="button"
                     onClick={() => setOpen(isOpen ? null : i)}
@@ -226,16 +243,16 @@ export default function CareersPage() {
                   >
                     <div className="flex items-start justify-between gap-6">
                       <div className="min-w-0 flex-1 pr-3">
-                        <h3 className="font-heading text-[26px] font-semibold leading-[1.2] text-[var(--navy)] md:text-[30px]">
+                        <h3 className="heading-md font-semibold text-[var(--navy)]">
                           {role.title}
                         </h3>
                       </div>
 
                       <div className="hidden shrink-0 items-center gap-4 md:flex">
-                        <span className="inline-flex items-center gap-2 text-[13px] text-[#5d86aa]">
+                        <span className="inline-flex items-center gap-2 body-sm text-[var(--ink-3)]">
                           <MapPin className="h-3.5 w-3.5" /> {role.location}
                         </span>
-                        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#e8f3fd] px-4 py-2 text-[13px] text-[#0b6fb8]">
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--surface-3)] px-4 py-2 body-sm text-[var(--sky-deep)]">
                           <Briefcase className="h-3.5 w-3.5" /> {role.type}
                         </span>
                       </div>
@@ -253,7 +270,7 @@ export default function CareersPage() {
                       <span className="inline-flex items-center gap-1.5">
                         <MapPin className="h-3.5 w-3.5" /> {role.location}
                       </span>
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-[#e8f3fd] px-3 py-1 text-[#0b6fb8]">
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--surface-3)] px-3 py-1 text-[var(--sky-deep)] body-sm">
                         <Briefcase className="h-3.5 w-3.5" /> {role.type}
                       </span>
                     </div>
@@ -270,19 +287,19 @@ export default function CareersPage() {
                       >
                         <div className="pb-10">
                           <div className="max-w-[1240px]">
-                            <p className="max-w-[1260px] pr-0 text-[18px] leading-[1.75] text-[var(--navy)] md:pr-10">
+                            <p className="body-lg max-w-[1260px] pr-0 text-[var(--navy)] md:pr-10">
                               {role.summary}
                             </p>
 
                             <div className="mt-10">
-                              <div className="font-mono text-[15px] font-weight-900 font-bold uppercase tracking-[0.14em] text-[var(--navy)]">
+                              <div className="label-mono !text-[var(--navy)] font-bold uppercase">
                                 Requirements
                               </div>
                               <ul className="mt-6 space-y-4">
                                 {role.requirements.map((item) => (
                                   <li
                                     key={item}
-                                    className="flex items-start gap-4 text-[17px] leading-[1.65] text-[var(--navy)]"
+                                    className="body-base flex items-start gap-4 text-[var(--navy)]"
                                   >
                                     <span className="mt-[11px] h-2.5 w-2.5 rounded-full bg-[#1183c7]" />
                                     <span>{item}</span>
@@ -310,7 +327,7 @@ export default function CareersPage() {
           </div>
 
           <div className="mt-20 overflow-hidden bg-white">
-            <div className="relative overflow-hidden border border-[#d9e6f1] px-6 py-8 md:px-10 md:py-10">
+            <div className="relative overflow-hidden border border-[var(--border)] px-6 py-8 md:px-10 md:py-10">
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-0 opacity-60"
@@ -321,20 +338,20 @@ export default function CareersPage() {
               />
               <div className="relative">
                 <div className="flex items-center gap-4">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-[#cfddeb] bg-[#eef5fb] px-4 py-2">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-2)] px-4 py-2">
                     <Globe2 className="h-4 w-4 text-[var(--navy)]" />
                     <span className="label-mono !text-[10px] !text-[var(--navy)]">
                       Join our team
                     </span>
                   </div>
-                  <div className="h-px flex-1 bg-[#c9dceb]" />
+                  <div className="h-px flex-1 bg-[var(--border)]" />
                 </div>
 
                 <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,0.88fr)_minmax(320px,0.72fr)] lg:items-start">
-                  <h2 className="max-w-[760px] font-display text-[clamp(34px,4.8vw,58px)] leading-[0.98] text-[var(--navy)]">
+                  <h2 className="heading-lg max-w-[760px] text-[var(--navy)]">
                     Life at CentricaSoft
                   </h2>
-                  <p className="max-w-[620px] text-[17px] leading-[1.7] text-[#667085]">
+                  <p className="body-lg max-w-[620px] text-[var(--ink-2)]">
                     Get a glimpse into CentricaSoft&apos;s vibrant culture, where collaboration,
                     creativity, and shared momentum drive the way we work together.
                   </p>

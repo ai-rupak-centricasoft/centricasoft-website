@@ -93,9 +93,7 @@ export function Navbar() {
   // Home page uses a white nav so the inset hero card reads as a card on white
   // Dark-transparent nav only applies to full-bleed hero pages (not home)
   const overDarkHero =
-    (currentPath === "/products/nubo" ||
-      currentPath.startsWith("/what-we-do/") ||
-      currentPath.startsWith("/company/") ||
+    (currentPath.startsWith("/company/") ||
       currentPath === "/contact" ||
       currentPath.startsWith("/privacy-policy") ||
       currentPath.startsWith("/terms-of-use") ||
@@ -103,6 +101,7 @@ export function Navbar() {
       currentPath === "/careers") &&
     !scrolled &&
     !active;
+  const mobileOverDarkHero = currentPath !== "/" && overDarkHero;
   const navItemBase = overDarkHero
     ? "text-white/78 hover:bg-white/10 hover:text-white"
     : "text-[var(--ink-2)] hover:bg-[var(--highlight)] hover:text-[var(--navy)]";
@@ -113,8 +112,7 @@ export function Navbar() {
     "whitespace-nowrap text-[0.975rem] xl:text-[1rem] font-semibold tracking-[-0.01em]";
   const mobileNavText =
     "font-heading text-[clamp(1.5rem,4vw,1.9rem)] font-semibold tracking-[-0.02em]";
-  const mobileMetaText =
-    "font-mono text-[0.72rem] sm:text-[0.76rem] uppercase tracking-[0.22em]";
+  const mobileMetaText = "font-mono text-[0.72rem] sm:text-[0.76rem] uppercase tracking-[0.22em]";
 
   let closeTimer: ReturnType<typeof setTimeout> | null = null;
   const open = (p: Panel) => {
@@ -128,17 +126,26 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-[400ms] ${
+      className={`fixed top-0 left-0 right-0 z-[1000] border-b transition-all duration-[400ms] ${
+        mobileOverDarkHero
+          ? "border-white/10 bg-[rgba(6,16,34,0.28)] backdrop-blur-md"
+          : "border-[rgba(200,223,240,0.5)] bg-[rgba(247,250,253,0.96)] backdrop-blur-2xl"
+      } ${
         scrolled || active
-          ? "bg-[rgba(247,250,253,0.92)] backdrop-blur-2xl border-b border-[rgba(200,223,240,0.5)]"
+          ? "lg:border-[rgba(200,223,240,0.5)] lg:bg-[rgba(247,250,253,0.92)] lg:backdrop-blur-2xl"
           : overDarkHero
-            ? "bg-[rgba(6,16,34,0.28)] backdrop-blur-md border-b border-white/10"
-            : "bg-transparent border-b border-transparent"
+            ? "lg:border-white/10 lg:bg-[rgba(6,16,34,0.28)] lg:backdrop-blur-md"
+            : "lg:border-transparent lg:bg-transparent lg:backdrop-blur-none"
       }`}
       onMouseLeave={scheduleClose}
     >
       <div className="container-x flex items-center justify-between h-[4.75rem]">
-        <Logo light={overDarkHero} />
+        <div className="lg:hidden">
+          <Logo light={mobileOverDarkHero} />
+        </div>
+        <div className="hidden lg:block">
+          <Logo light={overDarkHero} />
+        </div>
 
         <nav className="hidden lg:flex items-center gap-2 xl:gap-3">
           {NAV_ITEMS.map((item) =>
@@ -196,11 +203,13 @@ export function Navbar() {
         <button
           onClick={() => setMobile(true)}
           aria-label="Open menu"
-          className={`lg:hidden w-10 h-10 inline-flex items-center justify-center rounded-full border ${
-            overDarkHero ? "border-white/20 bg-white/10" : "border-[var(--border)]"
+          className={`inline-flex h-10 w-10 items-center justify-center rounded-full border lg:hidden ${
+            mobileOverDarkHero
+              ? "border-white/20 bg-white/10"
+              : "border-[var(--border)] bg-white/40"
           }`}
         >
-          <Menu className={`w-5 h-5 ${overDarkHero ? "text-white" : "text-[var(--navy)]"}`} />
+          <Menu className={`h-5 w-5 ${mobileOverDarkHero ? "text-white" : "text-[var(--navy)]"}`} />
         </button>
 
         <MegaNav active={active} onClose={scheduleClose} />
@@ -233,12 +242,8 @@ export function Navbar() {
               </div>
               <div className="container-x flex min-h-[calc(100vh-72px)] flex-col pb-8 pt-8">
                 <div className="mb-6 flex items-center justify-between border-b border-white/10 pb-4">
-                  <span className={`${mobileMetaText} text-[#7DE7FF]`}>
-                    Navigation
-                  </span>
-                  <span className={`${mobileMetaText} text-white/45`}>
-                    CS / 2026
-                  </span>
+                  <span className={`${mobileMetaText} text-[#7DE7FF]`}>Navigation</span>
+                  <span className={`${mobileMetaText} text-white/45`}>CS / 2026</span>
                 </div>
 
                 <div className="flex flex-col">

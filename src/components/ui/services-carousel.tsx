@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 
 export interface ServicesCarouselItem {
   title: string;
@@ -19,11 +20,12 @@ export interface ServicesCarouselItem {
 interface ServicesCarouselProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
   title: React.ReactNode;
   subtitle: string;
+  eyebrow?: string;
   items: ServicesCarouselItem[];
 }
 
 export const ServicesCarousel = React.forwardRef<HTMLDivElement, ServicesCarouselProps>(
-  ({ title, subtitle, items, className, ...props }, ref) => {
+  ({ title, subtitle, eyebrow, items, className, ...props }, ref) => {
     const [currentIndex, setCurrentIndex] = React.useState(0);
 
     const handleNext = React.useCallback(() => {
@@ -46,7 +48,7 @@ export const ServicesCarousel = React.forwardRef<HTMLDivElement, ServicesCarouse
       <div
         ref={ref}
         className={cn(
-          "relative flex w-full flex-col items-center justify-center overflow-x-hidden py-10 md:py-16 text-[var(--ink)]",
+          "relative flex w-full flex-col items-center justify-center overflow-x-hidden pt-4 pb-10 md:pt-5 md:pb-16 text-[var(--ink)]",
           className,
         )}
         {...props}
@@ -61,7 +63,8 @@ export const ServicesCarousel = React.forwardRef<HTMLDivElement, ServicesCarouse
         />
 
         <div className="z-10 flex w-full flex-col items-center text-center">
-          <div className="space-y-4 px-4 mb-12">
+          <div className="space-y-5 px-4 mb-12">
+            {eyebrow && <SectionLabel>{eyebrow}</SectionLabel>}
             <h2 className="max-w-4xl font-display text-4xl tracking-[-0.04em] sm:text-5xl md:text-6xl">
               {title}
             </h2>

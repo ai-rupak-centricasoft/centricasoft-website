@@ -133,22 +133,22 @@ const TEAM_MEMBERS = [
     image: "/team/Samad.jpeg",
     linkedin: "https://www.linkedin.com/",
   },
-  {
-    name: "Sonali Jana",
-    role: "Team Lead",
-    ownership: "Engineering execution",
-    body: "Guides squads through design, implementation, and review cycles while protecting engineering rigor.",
-    image: "/team/Sonali.jpeg",
-    linkedin: "https://www.linkedin.com/",
-  },
-  {
-    name: "Indranil Basu",
-    role: "AI Lead",
-    ownership: "Applied intelligence",
-    body: "Shapes agent design, model evaluation, and AI system quality so experiments mature into reliable production capability.",
-    image: "/team/Indranil.jpeg",
-    linkedin: "https://www.linkedin.com/",
-  },
+  // {
+  //   name: "Sonali Jana",
+  //   role: "Team Lead",
+  //   ownership: "Engineering execution",
+  //   body: "Guides squads through design, implementation, and review cycles while protecting engineering rigor.",
+  //   image: "/team/Sonali.jpeg",
+  //   linkedin: "https://www.linkedin.com/",
+  // },
+  // {
+  //   name: "Indranil Basu",
+  //   role: "AI Lead",
+  //   ownership: "Applied intelligence",
+  //   body: "Shapes agent design, model evaluation, and AI system quality so experiments mature into reliable production capability.",
+  //   image: "/team/Indranil.jpeg",
+  //   linkedin: "https://www.linkedin.com/",
+  // },
 ] as const;
 
 const TEAM_STATS = [
@@ -181,17 +181,16 @@ export default function AboutPage() {
         backgroundImage="https://images.pexels.com/photos/36765725/pexels-photo-36765725.jpeg?cs=srgb&dl=pexels-silverkblack-36765725.jpg&fm=jpg"
       />
 
-      <section className="relative overflow-hidden bg-[var(--surface-2)] py-18 md:py-20">
-        <SectionAccentPattern variant="top-left" />
-        <div className="container-x relative z-10">
-          <SectionLabel number="01">Who We Are</SectionLabel>
+      <section className="bg-[var(--surface-2)] pb-16 pt-10 md:pb-24 md:pt-14">
+        <div className="container-x">
+          {/* <SectionLabel number="01">Who We Are</SectionLabel> */}
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10%" }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-10 overflow-hidden rounded-[28px] border border-[var(--border)] bg-white shadow-[0_24px_60px_-38px_rgba(0,18,52,0.16)]"
+            className="overflow-hidden rounded-[28px] border border-[var(--border)] bg-white shadow-[0_24px_60px_-38px_rgba(0,18,52,0.16)]"
           >
             <div className="grid gap-px bg-[var(--border)] lg:grid-cols-2">
               {ABOUT_COLUMNS.map((column, index) => (
@@ -203,14 +202,14 @@ export default function AboutPage() {
                       ) : (
                         <BriefcaseBusiness className="h-3.5 w-3.5 text-[var(--sky-deep)]" />
                       )}
-                      <span className="label-mono !text-[10px] !text-[var(--sky-deep)]">
+                      <span className="label-mono !text-[12px] !tracking-[0.2em] !text-[var(--sky-deep)]">
                         {column.label}
                       </span>
                     </div>
                     <div className="h-px flex-1 bg-[var(--border)]" />
                   </div>
 
-                  <div className="mt-6 space-y-5 text-[16px] leading-[1.8] text-[var(--ink-2)]">
+                  <div className="body-base mt-6 space-y-4 text-[var(--ink-2)]">
                     {column.body.map((paragraph) => (
                       <p key={paragraph}>{paragraph}</p>
                     ))}
@@ -222,8 +221,8 @@ export default function AboutPage() {
             <div className="grid gap-px bg-[var(--border)] md:grid-cols-3">
               {[
                 { value: 35, suffix: "+", label: "Global clientele" },
-                { value: 446, suffix: "+", label: "Associates" },
-                { value: 99, suffix: "+", label: "Integrations" },
+                { value: 50, suffix: "+", label: "Associates" },
+                { value: 100, suffix: "+", label: "Integrations" },
               ].map((item, index) => (
                 <motion.div
                   key={item.label}
@@ -237,7 +236,7 @@ export default function AboutPage() {
                   <div className="mt-5 font-display text-[clamp(34px,4vw,46px)] leading-none text-[var(--ink)]">
                     <ScrollCounter value={item.value} suffix={item.suffix} />
                   </div>
-                  <div className="mt-3 text-[13px] text-[var(--ink-2)]">{item.label}</div>
+                  <div className="body-sm mt-3 text-[var(--ink-2)]">{item.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -245,35 +244,17 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[var(--navy)] py-20 text-white md:py-24">
-        <div
-          aria-hidden
-          className="absolute inset-0 opacity-[0.22]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 12% 18%, rgba(30,191,255,0.24), transparent 24%), radial-gradient(circle at 84% 76%, rgba(109,76,255,0.18), transparent 24%), url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='520' height='520' viewBox='0 0 520 520'><g fill='none' stroke='%232980ff' stroke-width='2' stroke-linecap='round' opacity='0.7'><path d='M14 84 C108 22,202 18,284 72 S432 180,534 116' stroke-dasharray='8 18'/><path d='M-8 190 C80 132,176 126,262 184 S420 288,520 218' stroke-dasharray='8 18'/><path d='M18 304 C112 244,214 246,300 302 S456 406,550 344' stroke-dasharray='8 18'/><path d='M48 422 C138 366,238 372,320 430 S458 522,548 472' stroke-dasharray='8 18'/><path d='M412 60 l12 8'/><path d='M336 132 l12 8'/><path d='M238 242 l12 8'/><path d='M434 314 l12 8'/><path d='M278 446 l12 8'/></g></svg>\")",
-            backgroundSize: "auto, auto, 540px 540px",
-            backgroundPosition: "0 0, 0 0, center",
-          }}
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background: "linear-gradient(180deg, rgba(0,18,52,0.18) 0%, rgba(0,18,52,0.42) 100%)",
-          }}
-        />
-
-        <div className="container-x relative z-10">
-          <div className="inline-flex items-center gap-3 label-mono text-white/72">
+      <section className="bg-[var(--navy)] py-20 text-white md:py-28">
+        <div className="container-x">
+          <div className="label-mono inline-flex items-center gap-3 text-white/72">
             <span className="text-[var(--sky-bright)]">02</span>
             <span>Values</span>
           </div>
-          <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(280px,0.42fr)] lg:items-end">
-            <h2 className="max-w-[760px] font-display text-[clamp(36px,5vw,56px)] leading-[1.02] text-white">
+          <div className="mt-6 grid gap-7 lg:grid-cols-[minmax(0,0.78fr)_minmax(280px,0.42fr)] lg:items-end">
+            <h2 className="heading-lg max-w-[760px] text-left text-white">
               We live by values that keep delivery sharp and relationships durable.
             </h2>
-            <p className="max-w-[360px] text-[15px] leading-[1.8] text-white/70">
+            <p className="body-base max-w-[390px] text-white/70 lg:justify-self-end">
               Innovation, excellence, and integrity are not wall language here. They shape how we
               architect, communicate, and deliver under pressure.
             </p>
@@ -290,29 +271,17 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-10%" }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="group relative overflow-hidden rounded-[24px] border border-white/10 bg-white/7 p-8 backdrop-blur-[14px] transition-all duration-300 hover:-translate-y-1.5 hover:border-white/18 hover:bg-white/10 hover:shadow-[0_24px_80px_-30px_rgba(0,0,0,0.45)]"
+                  className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/6 p-8 transition-all duration-300 hover:-translate-y-1 hover:border-white/18 hover:bg-white/10"
                 >
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 opacity-70"
-                    style={{
-                      background:
-                        "linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)",
-                    }}
-                  />
                   <div className="absolute right-6 top-5 font-mono text-[11px] text-white/30">
                     0{index + 1}
                   </div>
                   <div className="relative inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-brand-h text-white shadow-[0_12px_32px_-14px_rgba(30,191,255,0.75)]">
                     <Icon className="h-5 w-5" />
                   </div>
-                  <h3 className="relative mt-6 font-heading text-[22px] font-bold text-white">
-                    {value.title}
-                  </h3>
+                  <h3 className="heading-md relative mt-6 text-white">{value.title}</h3>
                   <div className="relative mt-5 h-px bg-white/14" />
-                  <p className="relative mt-5 text-[15px] leading-[1.8] text-white/72">
-                    {value.body}
-                  </p>
+                  <p className="body-base relative mt-5 text-white/72">{value.body}</p>
                 </motion.div>
               );
             })}
@@ -325,7 +294,7 @@ export default function AboutPage() {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="mt-10 rounded-[28px] border border-white/10 bg-[linear-gradient(135deg,rgba(46,112,255,0.95),rgba(65,106,255,0.82))] px-8 py-7 text-center shadow-[0_26px_80px_-34px_rgba(30,96,255,0.65)] md:px-12 md:py-9"
           >
-            <p className="mx-auto max-w-[980px] text-[clamp(20px,2.2vw,32px)] font-semibold leading-[1.25] text-white">
+            <p className="mx-auto max-w-[920px] font-display text-[clamp(28px,3.2vw,42px)] font-semibold leading-[1.16] tracking-[-0.025em] text-white">
               We build for trust, move with urgency, and stay accountable for the outcomes long
               after launch.
             </p>
@@ -333,14 +302,13 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[var(--surface-2)] py-20 md:py-24">
-        <SectionAccentPattern variant="split-right" />
-        <div className="container-x relative z-10">
+      <section className="bg-[var(--surface-2)] py-20 md:py-28">
+        <div className="container-x">
           <SectionLabel number="03">Global Presence</SectionLabel>
-          <h2 className="mt-6 max-w-[760px] font-display text-[clamp(36px,5vw,56px)] leading-[1.05] text-[var(--ink)]">
+          <h2 className="heading-lg mt-6 mx-auto max-w-[760px] text-center text-[var(--ink)]">
             Three offices. <span className="text-gradient-brand">One delivery rhythm.</span>
           </h2>
-          <p className="mt-6 max-w-[680px] text-[16px] leading-[1.7] text-[var(--ink-2)]">
+          <p className="body-base mx-auto mt-6 max-w-[680px] text-center text-[var(--ink-2)]">
             Our follow-the-sun model now runs across Los Angeles, Bengaluru, and Kolkata so
             strategy, engineering, and delivery operations can move in a continuous loop.
           </p>
@@ -382,10 +350,8 @@ export default function AboutPage() {
                       <Building2 className="h-3.5 w-3.5 text-[var(--sky-bright)]" />
                       <span className="label-mono !text-[10px] !text-white/78">{office.note}</span>
                     </div>
-                    <h3 className="mt-4 font-display text-[clamp(24px,3vw,32px)] text-white">
-                      {office.city}
-                    </h3>
-                    <div className="mt-1 text-[14px] text-white/72">{office.country}</div>
+                    <h3 className="heading-md mt-4 text-white">{office.city}</h3>
+                    <div className="body-sm mt-1 text-white/72">{office.country}</div>
                   </div>
                 </div>
 
@@ -403,7 +369,7 @@ export default function AboutPage() {
                         <Clock3 className="h-4 w-4" />
                         <span className="label-mono">Timezone</span>
                       </div>
-                      <div className="mt-2 text-[14px] font-medium text-[var(--ink)]">
+                      <div className="body-sm mt-2 font-medium text-[var(--ink)]">
                         {office.timezone}
                       </div>
                     </div>
@@ -412,19 +378,19 @@ export default function AboutPage() {
                         <BriefcaseBusiness className="h-4 w-4" />
                         <span className="label-mono">Team focus</span>
                       </div>
-                      <div className="mt-2 text-[14px] font-medium text-[var(--ink)]">
+                      <div className="body-sm mt-2 font-medium text-[var(--ink)]">
                         {office.team}
                       </div>
                     </div>
                   </div>
 
                   <div className="mt-6">
-                    <div className="label-mono mb-3">Capabilities</div>
+                    <div className="label-mono mb-3 !text-[var(--ink-3)]">Capabilities</div>
                     <div className="flex flex-wrap gap-2">
                       {office.capabilities.map((capability) => (
                         <span
                           key={capability}
-                          className="rounded-md bg-[var(--surface-2)] px-3 py-1.5 text-[12px] text-[var(--ink-2)]"
+                          className="body-sm rounded-md bg-[var(--surface-2)] px-3 py-1.5 !text-[12px] text-[var(--ink-2)]"
                         >
                           {capability}
                         </span>
@@ -438,33 +404,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#09153b] py-20 text-white md:py-24">
-        <div
-          aria-hidden
-          className="absolute inset-0 opacity-60"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 12% 18%, rgba(50,94,255,0.18), transparent 18%), radial-gradient(circle at 84% 82%, rgba(30,191,255,0.12), transparent 20%)",
-          }}
-        />
-        <div
-          aria-hidden
-          className="absolute inset-y-0 left-0 w-72 opacity-25"
-          style={{
-            backgroundImage:
-              "repeating-radial-gradient(circle at 0 0, transparent 0 24px, rgba(72,105,205,0.32) 24px 26px, transparent 26px 48px)",
-          }}
-        />
-        <div
-          aria-hidden
-          className="absolute inset-y-0 right-0 w-72 opacity-20"
-          style={{
-            backgroundImage:
-              "repeating-radial-gradient(circle at 100% 100%, transparent 0 24px, rgba(72,105,205,0.32) 24px 26px, transparent 26px 48px)",
-          }}
-        />
-        <div className="container-x relative z-10">
-          <div className="inline-flex items-center gap-3 rounded-full border border-white/12 bg-white/8 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/74">
+      <section className="bg-[var(--navy)] py-20 text-white md:py-28">
+        <div className="container-x">
+          <div className="label-mono inline-flex items-center gap-3 rounded-full border border-white/12 bg-white/8 px-4 py-2 !text-[10px] !tracking-[0.18em] text-white/74">
             <Quote className="h-3.5 w-3.5 text-[var(--sky-bright)]" />
             <span>{FOUNDER_NOTE.eyebrow}</span>
           </div>
@@ -496,20 +438,16 @@ export default function AboutPage() {
               </div>
 
               <div className="flex flex-col justify-center">
-                <div className="max-w-4xl text-[clamp(28px,3.6vw,52px)] font-semibold leading-[1.18] text-white">
+                <div className="heading-lg max-w-4xl text-white">
                   &ldquo;{FOUNDER_NOTE.quote}&rdquo;
                 </div>
                 <div className="mt-8 h-px w-full max-w-[160px] bg-white/14" />
                 <div className="mt-6">
-                  <div className="font-display text-[clamp(28px,4vw,44px)] italic leading-none text-white">
-                    {FEATURED_MEMBER.name}
-                  </div>
-                  <div className="mt-3 text-[14px] uppercase tracking-[0.18em] text-white/62">
+                  <div className="heading-md text-white">{FEATURED_MEMBER.name}</div>
+                  <div className="label-mono mt-3 !text-[10px] !tracking-[0.18em] text-white/62">
                     {FEATURED_MEMBER.role}
                   </div>
-                  <p className="mt-4 max-w-2xl text-[15px] leading-[1.8] text-white/74">
-                    {FEATURED_MEMBER.body}
-                  </p>
+                  <p className="body-base mt-4 max-w-2xl text-white/74">{FEATURED_MEMBER.body}</p>
                 </div>
               </div>
             </div>
@@ -517,14 +455,12 @@ export default function AboutPage() {
 
           <div className="mt-18 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <div className="text-[clamp(42px,6vw,64px)] font-display leading-none text-white">
-                Our Team
-              </div>
-              <p className="mt-5 max-w-[560px] text-[15px] leading-[1.8] text-white/68">
+              <div className="heading-lg text-white">Our Team</div>
+              <p className="body-base mt-5 max-w-[560px] text-white/68">
                 Senior leadership across product, delivery, engineering, and applied AI.
               </p>
             </div>
-            <div className="text-[13px] uppercase tracking-[0.18em] text-white/48">
+            <div className="label-mono !text-[10px] !tracking-[0.18em] text-white/48">
               Leadership & Team
             </div>
           </div>
@@ -552,13 +488,13 @@ export default function AboutPage() {
                   <div className="min-w-0 flex-1 pt-1">
                     <div className="flex items-start justify-between gap-3">
                       <div>
-                        <h3 className="text-[24px] font-semibold leading-[1.15] text-[var(--navy)]">
+                        <h3 className="heading-md font-semibold text-[var(--navy)]">
                           {member.name}
                         </h3>
-                        <div className="mt-1 text-[15px] font-medium text-[var(--ink-2)]">
+                        <div className="body-sm mt-1 font-medium text-[var(--ink-2)]">
                           {member.role}
                         </div>
-                        <div className="mt-2 text-[11px] uppercase tracking-[0.16em] text-[var(--sky-deep)]">
+                        <div className="label-mono mt-2 !text-[10px] !tracking-[0.16em] !text-[var(--sky-deep)]">
                           {member.ownership}
                         </div>
                       </div>
@@ -575,10 +511,10 @@ export default function AboutPage() {
                   </div>
                 </div>
 
-                <p className="mt-4 border-t border-black/6 pt-4 text-[14px] leading-[1.75] text-[var(--ink-2)]">
+                <p className="body-sm mt-4 border-t border-black/6 pt-4 text-[var(--ink-2)]">
                   {member.body}
                 </p>
-                <div className="mt-auto pt-4 text-[13px] font-medium text-[var(--navy)]">
+                <div className="body-sm mt-auto pt-4 font-medium text-[var(--navy)]">
                   <a
                     href={member.linkedin}
                     target="_blank"
@@ -593,7 +529,7 @@ export default function AboutPage() {
             ))}
           </div>
 
-          <div className="mt-12 overflow-hidden rounded-[22px] border border-white/12 bg-white/6 backdrop-blur-sm">
+          {/* <div className="mt-12 overflow-hidden rounded-[22px] border border-white/12 bg-white/6 backdrop-blur-sm">
             <div className="grid grid-cols-2 gap-px md:grid-cols-4">
               {TEAM_STATS.map((metric, index) => (
                 <motion.div
@@ -611,7 +547,7 @@ export default function AboutPage() {
                 </motion.div>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 

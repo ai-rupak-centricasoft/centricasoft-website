@@ -121,7 +121,7 @@ export function Testimonials() {
     <section className="bg-[var(--surface-2)] pt-[clamp(72px,9vw,120px)] pb-6 md:pb-8">
       <div className="container-x">
         <SectionLabel number="04">Client Perspectives</SectionLabel>
-        <div className="mt-8">
+        <div className="mt-10">
           <FeatureCarousel
             title={<>What clients value most </>}
             subtitle="A few representative reflections from enterprise teams operating in complex, high-stakes environments."

@@ -65,7 +65,7 @@ export function Services() {
     <section className="relative overflow-hidden bg-gradient-to-b from-[#F4F7FF] to-[#E5EDFD] pt-[clamp(40px,6vw,80px)] pb-12 md:pb-24">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/60 via-transparent to-transparent pointer-events-none" />
       
-      <div className="container-x relative z-10 mb-8 md:mb-12">
+      <div className="container-x relative z-10 mb-2 md:mb-3">
         <SectionLabel number="02">Services</SectionLabel>
       </div>
       

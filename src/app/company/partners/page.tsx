@@ -126,16 +126,15 @@ export default function PartnersPage() {
         backgroundImage="https://images.pexels.com/photos/6931199/pexels-photo-6931199.jpeg?cs=srgb&dl=pexels-mikhail-nilov-6931199.jpg&fm=jpg"
       />
 
-      <section className="relative overflow-hidden bg-[var(--surface-2)] py-20 md:py-24">
-        <SectionAccentPattern variant="top-left" />
-        <div className="container-x relative z-10">
+      <section className="bg-[var(--surface-2)] py-20 md:py-28">
+        <div className="container-x">
           <SectionLabel number="01">Why It Matters</SectionLabel>
           <div className="mt-10 grid items-start gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
-            <h2 className="font-display text-[clamp(32px,5vw,52px)] leading-[1.1] text-[var(--ink)]">
+            <h2 className="heading-lg text-center text-[var(--ink)]">
               Certified expertise. <span className="text-gradient-brand">Direct lines</span> to
               product teams.
             </h2>
-            <div className="space-y-5 text-[16px] leading-[1.8] text-[var(--ink-2)]">
+            <div className="body-base space-y-5 text-[var(--ink-2)]">
               <p>
                 Our partner program is not decoration. It is leverage. Direct escalation paths to
                 Snowflake support, early access to Bedrock features, and joint roadmap sessions with
@@ -150,10 +149,10 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden py-20 md:py-24">
+      <section className="relative overflow-hidden py-20 md:py-28">
         <div className="container-x relative z-10">
           <SectionLabel number="02">Technology Partners</SectionLabel>
-          <h2 className="mt-6 max-w-[700px] font-display text-[clamp(36px,5vw,56px)] leading-[1.05] text-[var(--ink)]">
+          <h2 className="heading-lg mx-auto mt-6 max-w-[700px] text-center text-[var(--ink)]">
             The platforms we deploy on.
           </h2>
 
@@ -181,13 +180,13 @@ export default function PartnersPage() {
                           {partner.tier}
                         </span>
                       </div>
-                      <h3 className="mt-6 font-display text-[24px] leading-tight text-[var(--ink)]">
+                      <h3 className="heading-md mt-6 text-[var(--ink)]">
                         {partner.name}
                       </h3>
                       <div className="label-mono mt-1 !text-[var(--sky-deep)]">
                         {partner.category}
                       </div>
-                      <p className="mt-4 text-[14px] leading-[1.7] text-[var(--ink-2)]">
+                      <p className="body-sm mt-4 text-[var(--ink-2)]">
                         {partner.blurb}
                       </p>
                     </div>
@@ -199,15 +198,14 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[var(--surface-2)] py-20 md:py-24">
-        <SectionAccentPattern variant="split-right" />
-        <div className="container-x relative z-10">
+      <section className="bg-[var(--surface-2)] py-20 md:py-28">
+        <div className="container-x">
           <SectionLabel number="03">Delivery Partners</SectionLabel>
           <div className="mb-12 mt-6 grid items-end gap-6 lg:grid-cols-[1fr_auto]">
-            <h2 className="max-w-[700px] font-display text-[clamp(36px,5vw,56px)] leading-[1.05] text-[var(--ink)]">
+            <h2 className="heading-lg mx-auto max-w-[700px] text-center text-[var(--ink)]">
               Global reach. Local expertise.
             </h2>
-            <p className="max-w-[400px] text-[15px] leading-[1.7] text-[var(--ink-2)]">
+            <p className="body-base max-w-[400px] text-[var(--ink-2)]">
               Our delivery network extends our team into every major region without losing the
               quality bar.
             </p>
@@ -229,10 +227,10 @@ export default function PartnersPage() {
                   </div>
                   <div>
                     <div className="label-mono !text-[var(--sky-deep)]">{partner.region}</div>
-                    <h3 className="mt-2 font-heading text-[20px] font-bold text-[var(--ink)]">
+                    <h3 className="heading-md mt-2 font-bold text-[var(--ink)]">
                       {partner.name}
                     </h3>
-                    <p className="mt-2 text-[14px] text-[var(--ink-2)]">{partner.focus}</p>
+                    <p className="body-sm mt-2 text-[var(--ink-2)]">{partner.focus}</p>
                   </div>
                 </motion.div>
               ))}
@@ -241,7 +239,7 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-24">
+      <section className="py-20 md:py-28">
         <div className="container-x">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -261,10 +259,10 @@ export default function PartnersPage() {
             <div className="relative grid items-end gap-10 md:grid-cols-[1fr_auto]">
               <div>
                 <div className="label-mono !text-[var(--sky)]">Partner With Us</div>
-                <h2 className="mt-5 max-w-[640px] font-display text-[clamp(32px,5vw,52px)] leading-[1.05]">
+                <h2 className="heading-lg mt-5 max-w-[640px]">
                   Want to join the ecosystem?
                 </h2>
-                <p className="mt-5 max-w-[520px] text-[15px] leading-[1.7] text-white/65">
+                <p className="body-base mt-5 max-w-[520px] text-white/65">
                   Whether you are a technology platform, a regional consultancy, or a specialist
                   studio, we are always looking for partners who care about engineering excellence.
                 </p>

@@ -224,12 +224,12 @@ export function PageHero({
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.85, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-                  className={`font-display tracking-[-0.045em] text-white ${
+                  className={`font-display tracking-[-0.04em] text-white ${
                     isPhotoTone
                       ? isCompact
-                        ? "mt-5 max-w-[520px] text-[clamp(28px,3.6vw,46px)] leading-[1.02] xl:max-w-[560px] xl:text-[clamp(30px,3.4vw,50px)]"
-                        : "mt-8 max-w-[680px] text-[clamp(40px,5.8vw,72px)] leading-[0.98] xl:max-w-[740px] xl:text-[clamp(44px,5.2vw,76px)]"
-                      : "max-w-[900px] text-[clamp(46px,7vw,84px)] leading-[0.95]"
+                        ? "mt-5 max-w-[520px] text-[clamp(28px,3.8vw,48px)] leading-[1.02] xl:max-w-[560px]"
+                        : "mt-8 max-w-[680px] text-[clamp(38px,5.4vw,68px)] leading-[0.98] xl:max-w-[740px]"
+                      : "max-w-[900px] text-[clamp(40px,6vw,78px)] leading-[0.96]"
                   }`}
                 >
                   {renderTitle()}
@@ -292,8 +292,8 @@ export function PageHero({
                     <p
                       className={`max-w-[520px] text-white/84 ${
                         isCompact
-                          ? "mt-3 text-[15px] leading-[1.65] md:text-[16px] lg:text-[15px]"
-                          : "mt-4 text-[18px] leading-[1.72] md:text-[19px] lg:text-[18px] xl:text-[19px]"
+                          ? "mt-3 text-[15px] leading-[1.7] lg:text-[15px]"
+                          : "mt-4 text-[17px] leading-[1.75] lg:text-[17px]"
                       }`}
                     >
                       {subtitle}
@@ -351,7 +351,7 @@ export function PageHero({
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-8 max-w-[1100px] font-display text-[clamp(48px,8vw,88px)] leading-[1] text-[var(--ink)]"
+          className="mt-8 max-w-[1100px] font-display text-[clamp(42px,7vw,82px)] leading-[1] tracking-[-0.04em] text-[var(--ink)]"
         >
           {renderTitle()}
         </motion.h1>
@@ -359,7 +359,7 @@ export function PageHero({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="mt-8 max-w-[680px] text-[20px] leading-[1.6] text-[var(--ink-2)]"
+          className="mt-8 max-w-[680px] text-[17px] leading-[1.75] text-[var(--ink-2)]"
         >
           {subtitle}
         </motion.p>

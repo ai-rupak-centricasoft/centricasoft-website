@@ -31,10 +31,7 @@ const itemVariants = {
 
 export function Hero() {
   return (
-    <section
-      className="relative isolate w-full bg-neutral-200"
-      style={{ height: `calc(${SCROLL_HEIGHT}px + 100vh)` }}
-    >
+    <section className="relative isolate h-[100dvh] w-full bg-neutral-200 md:h-[calc(800px+100vh)]">
       <SmoothScrollHeroBackground
         scrollHeight={SCROLL_HEIGHT}
         navbarHeight={NAVBAR_H}
@@ -96,7 +93,7 @@ export function Hero() {
                 variant="white"
                 className="!h-[50px] !gap-2 !px-7 !text-[14px] !font-medium sm:!h-[54px] sm:!px-10 sm:!text-[15px]"
               >
-                 What We Build
+                What We Build
                 <ArrowRight className="h-4 w-4" />
               </MagneticButton>
 

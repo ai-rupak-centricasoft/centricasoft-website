@@ -74,45 +74,50 @@ export function CaseStudies() {
   return (
     <section className="pt-6 pb-[clamp(72px,9vw,120px)] md:pt-8">
       <div className="container-x">
-        <div className="grid items-end gap-12 lg:grid-cols-12">
-          <ScrollReveal className="lg:col-span-8" x={-24}>
-            <SectionLabel number="05">Case Studies</SectionLabel>
-            <h2 className="mt-6 font-display text-[clamp(40px,6vw,64px)] leading-[1.05] text-[var(--ink)]">
-              Real Impact.
-              <br />
-              Real Scale.
+        <SectionLabel number="05">Case Studies</SectionLabel>
+
+        <div className="mt-10 text-center">
+          <ScrollReveal y={-24}>
+            <h2 className="font-display mx-auto text-[clamp(40px,6vw,64px)] leading-[1.05] text-[var(--ink)]">
+              Latest Articles
             </h2>
           </ScrollReveal>
+        </div>
 
-          <ScrollReveal className="flex flex-col gap-4 lg:col-span-4" x={24} delay={0.08}>
-            <div className="flex items-center justify-between">
-              <div className="font-mono text-[12px] text-[var(--ink-3)]">
-                <span className="text-[var(--navy)]">{String(selected + 1).padStart(2, "0")}</span>
-                {" / "}
-                {String(count).padStart(2, "0")}
-              </div>
-              <div className="flex gap-2">
-                {[ArrowLeft, ArrowRight].map((Icon, i) => (
-                  <button
-                    key={i}
-                    onClick={() => (i === 0 ? emblaApi?.scrollPrev() : emblaApi?.scrollNext())}
-                    aria-label={i === 0 ? "Previous" : "Next"}
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] text-[var(--ink-2)] transition-all hover:border-[var(--navy)] hover:bg-[var(--navy)] hover:text-white"
-                  >
-                    <Icon className="h-4 w-4" />
-                  </button>
-                ))}
-              </div>
+        {/* Controls row: counter + progress LEFT — arrows RIGHT */}
+        <ScrollReveal className="mt-6 flex items-center justify-between gap-4" y={10} delay={0.1}>
+          {/* Left: counter + progress bar */}
+          <div className="flex items-center gap-4">
+            <div className="shrink-0 font-mono text-[12px] text-[var(--ink-3)]">
+              <span className="text-[var(--navy)]">{String(selected + 1).padStart(2, "0")}</span>
+              {" / "}
+              {String(count).padStart(2, "0")}
             </div>
-            <div className="relative h-px overflow-hidden bg-[var(--border)]">
+            <div className="relative h-px w-32 overflow-hidden bg-[var(--border)] sm:w-48">
               <motion.div
                 className="absolute inset-y-0 left-0 bg-gradient-brand-h"
                 animate={{ width: `${((selected + 1) / count) * 100}%` }}
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               />
             </div>
-          </ScrollReveal>
-        </div>
+          </div>
+
+          {/* Right: arrow buttons */}
+          <div className="flex shrink-0 gap-2">
+            {[ArrowLeft, ArrowRight].map((Icon, i) => (
+              <button
+                key={i}
+                onClick={() => (i === 0 ? emblaApi?.scrollPrev() : emblaApi?.scrollNext())}
+                aria-label={i === 0 ? "Previous" : "Next"}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] text-[var(--ink-2)] transition-all hover:border-[var(--navy)] hover:bg-[var(--navy)] hover:text-white"
+              >
+                <Icon className="h-4 w-4" />
+              </button>
+            ))}
+          </div>
+        </ScrollReveal>
+
+
 
         <ScrollReveal className="mt-16 -mx-5 lg:-mx-20" y={34} delay={0.1}>
           <div className="overflow-hidden px-5 lg:px-20" ref={emblaRef}>

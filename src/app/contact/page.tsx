@@ -155,7 +155,7 @@ export default function ContactPage() {
         </div>
       </PageHero>
 
-      <section className="pt-14 pb-32 md:pt-20">
+      <section className="pt-14 pb-28 md:pt-20">
         <div className="container-x">
           <div className="grid lg:grid-cols-[1fr_1.3fr] gap-12 lg:gap-20">
             {/* LEFT — meta */}
@@ -247,10 +247,10 @@ export default function ContactPage() {
                       >
                         <Check className="w-7 h-7 text-[var(--sky-deep)]" strokeWidth={3} />
                       </motion.div>
-                      <h3 className="mt-7 font-display text-[32px] leading-[1.15] text-[var(--ink)]">
+                      <h3 className="heading-md mt-7 text-[var(--ink)]">
                         Message received.
                       </h3>
-                      <p className="mt-4 text-[16px] text-[var(--ink-2)] leading-[1.6] max-w-[420px] mx-auto">
+                      <p className="body-base mt-4 max-w-[420px] mx-auto text-[var(--ink-2)]">
                         A senior engineer will reach out within 24 hours. In the meantime, feel free
                         to forward any docs to{" "}
                         <span className="text-[var(--sky-deep)] font-medium">{SITE.email}</span>.

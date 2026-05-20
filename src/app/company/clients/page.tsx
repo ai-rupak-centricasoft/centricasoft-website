@@ -110,7 +110,7 @@ export default function ClientsPage() {
       <section className="relative overflow-hidden py-20 md:py-24">
         <div className="container-x relative z-10">
           <SectionLabel number="01">Selected Clients</SectionLabel>
-          <h2 className="mt-6 max-w-[700px] font-display text-[clamp(36px,5vw,56px)] leading-[1.05] text-[var(--ink)]">
+          <h2 className="heading-lg mx-auto mt-6 max-w-[700px] text-center text-[var(--ink)]">
             Industries we serve.
           </h2>
 
@@ -180,9 +180,8 @@ export default function ClientsPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[var(--surface-2)] py-20 md:py-24">
-        <SectionAccentPattern variant="split-right" />
-        <div className="container-x relative z-10">
+      <section className="bg-[var(--surface-2)] py-20 md:py-28">
+        <div className="container-x">
           <SectionLabel number="02">In Their Words</SectionLabel>
           <div className="mt-12 grid items-center gap-12 lg:grid-cols-[auto_1fr]">
             <div className="font-mono text-[12px] text-[var(--ink-3)]">
@@ -218,7 +217,7 @@ export default function ClientsPage() {
               className="mt-10 max-w-[1000px]"
             >
               <Quote className="h-12 w-12 text-[var(--sky-bright)] opacity-50" />
-              <blockquote className="mt-6 font-display text-[clamp(24px,3.5vw,40px)] leading-[1.25] text-[var(--ink)]">
+              <blockquote className="heading-lg mt-6 max-w-[1000px] text-[var(--ink)]">
                 {TESTIMONIALS[testimonialIndex].quote}
               </blockquote>
               <div className="mt-10 flex items-center gap-4">

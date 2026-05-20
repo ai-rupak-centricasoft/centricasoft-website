@@ -43,11 +43,13 @@ export function NuboFeature() {
         </span>
       </div>
 
-      <div className="container-x relative grid lg:grid-cols-12 gap-16 items-center">
+      <div className="container-x relative">
+        <SectionLabel number="03">Featured Product</SectionLabel>
+
+        <div className="mt-14 grid lg:grid-cols-12 gap-16 items-center">
         <div className="lg:col-span-7">
           <ScrollReveal y={26}>
-            <SectionLabel number="03">Featured Product</SectionLabel>
-            <h2 className="mt-6 font-display text-[clamp(40px,6vw,64px)] leading-[1.05] text-[var(--ink)]">
+            <h2 className="font-display text-[clamp(40px,6vw,64px)] leading-[1.05] text-[var(--ink)]">
               Meet Nubo.
             </h2>
             <p className="mt-3 font-heading text-[clamp(20px,2.5vw,28px)] text-[var(--ink-2)]">
@@ -106,6 +108,7 @@ export function NuboFeature() {
             </div>
           </motion.div>
         </ScrollReveal>
+        </div>
       </div>
     </section>
   );

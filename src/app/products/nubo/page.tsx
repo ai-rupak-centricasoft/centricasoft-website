@@ -4,7 +4,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Sparkles, Database, Plug } from "lucide-react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { NuboChatCard } from "@/components/ui/NuboChatCard";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { HoverTilt } from "@/components/ui/HoverTilt";
 import { HLDDiagram } from "@/components/ui/HLDDiagram";
@@ -151,88 +150,96 @@ const CAPABILITIES = [
 export default function NuboPage() {
   return (
     <>
-      {/* HERO — dark navy */}
-      <section className="relative overflow-hidden bg-[var(--navy)] pt-[148px] pb-24 text-white md:pt-[156px] md:pb-28">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-80"
-          style={{
-            background:
-              "radial-gradient(48% 58% at 82% 28%, rgba(30,191,255,0.32), transparent 64%), radial-gradient(36% 44% at 14% 78%, rgba(168,207,230,0.18), transparent 66%), linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 48%, var(--navy-mid) 100%)",
-          }}
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-[0.08]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(168,207,230,0.42) 1px, transparent 1px), linear-gradient(90deg, rgba(30,191,255,0.24) 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-            maskImage: "radial-gradient(ellipse at center, #000 10%, transparent 70%)",
-            WebkitMaskImage: "radial-gradient(ellipse at center, #000 10%, transparent 70%)",
-          }}
-        />
-        <div className="container-x relative grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.88fr)] lg:gap-12">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/7 px-3 py-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[var(--sky-bright)] animate-pulse-dot" />
-              <span className="label-mono !text-[10px] !tracking-[0.16em] !text-[var(--sky-bright)]">
-                FLAGSHIP PRODUCT / V2.4
-              </span>
-            </div>
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
+      {/* â”€â”€ Split hero: left text Â· right chat card â”€â”€ */}
+      <section className="bg-[var(--bg)] px-4 pb-4 pt-[88px] text-white md:px-5 md:pb-6 md:pt-[92px]">
+        <div className="relative isolate flex min-h-[390px] items-center justify-center overflow-hidden rounded-[24px] bg-[var(--navy-deep)] px-6 py-12 text-center shadow-[0_26px_72px_-58px_rgba(0,18,52,0.72)] md:min-h-[430px] md:px-10 md:py-12">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(118deg, rgba(0,18,52,0.98) 0%, rgba(0,32,87,0.9) 48%, rgba(0,53,128,0.82) 100%)",
+            }}
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-75"
+            style={{
+              background:
+                "radial-gradient(60% 70% at 50% 22%, rgba(30,191,255,0.25), transparent 72%), radial-gradient(34% 42% at 18% 76%, rgba(168,207,230,0.16), transparent 72%), radial-gradient(34% 44% at 86% 30%, rgba(0,119,182,0.26), transparent 76%)",
+            }}
+          />
+          <div className="pointer-events-none absolute inset-x-0 top-[18%] mx-auto h-[52%] max-w-[760px] rounded-[48px] bg-[radial-gradient(circle_at_center,rgba(4,12,28,0.54)_0%,rgba(4,12,28,0.28)_48%,transparent_78%)] blur-3xl" />
+
+          <div className="relative z-10 mx-auto flex max-w-[880px] flex-col items-center">
+            {/* ── TOP: text ── */}
+            <motion.div
+              initial={{ opacity: 0, y: -14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-8 max-w-[760px] font-display text-[clamp(46px,7vw,82px)] leading-[0.92] tracking-[-0.05em]"
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="inline-flex items-center gap-3 rounded-full border border-white/18 bg-black/34 px-4 py-2 shadow-[0_8px_30px_rgba(0,0,0,0.26)] backdrop-blur-md"
             >
-              <span className="block text-white">Nubo.</span>
-              <span className="mt-2 block bg-[linear-gradient(90deg,#f7fbff_0%,#b8dff3_44%,var(--sky-bright)_100%)] bg-clip-text text-transparent">
-                The enterprise AI brain.
+              <span className="h-1.5 w-1.5 rounded-full bg-[var(--sky-bright)] animate-pulse-dot" />
+              <span className="label-mono !text-[10px] !tracking-[0.2em] !text-white/80">
+                Enterprise GenAI chatbot platform
               </span>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              className="mt-7 max-w-[560px] text-[17px] leading-[1.72] text-white/72 md:text-[18px]"
+              transition={{ duration: 0.9, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-6 max-w-[820px] font-display text-[clamp(34px,5.2vw,60px)] font-[430] leading-[1.02] tracking-[-0.045em]"
+              style={{ textShadow: "0 8px 32px rgba(0,0,0,0.26)" }}
+            >
+              Nubo for dependable enterprise AI
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-4 max-w-[610px] text-[14px] leading-[1.7] tracking-[-0.01em] text-white/84 sm:text-[15.5px]"
             >
               End-to-end GenAI chatbot platform. RAG-grounded, prompt-engineered, integration-ready
-              - built for enterprises that cannot afford hallucinations.
+              — built for enterprises that cannot afford hallucinations.
             </motion.p>
+
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.5 }}
-              className="mt-9 flex flex-wrap items-center gap-5"
+              transition={{ duration: 0.7, delay: 0.38 }}
+              className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
             >
-              <MagneticButton to="/contact" variant="white">
+              <MagneticButton
+                to="/contact"
+                variant="white"
+                className="!h-[50px] !gap-2 !px-7 !text-[14px] !font-medium sm:!h-[54px] sm:!px-10 sm:!text-[15px]"
+              >
                 Request a Demo
+                <ArrowUpRight className="h-4 w-4" />
               </MagneticButton>
               <a
                 href="#how-it-works"
-                className="inline-flex items-center gap-2 text-[15px] font-medium text-[#9cc6e1] transition-colors hover:text-white"
+                className="group inline-flex h-[50px] items-center gap-2 rounded-full border border-white/16 bg-white/8 px-7 text-[14px] font-normal text-white/90 backdrop-blur-md transition-all duration-300 hover:border-white/28 hover:bg-white/14 hover:text-white sm:h-[54px] sm:px-9 sm:text-[15px]"
               >
-                See How It Works <ArrowDown className="w-4 h-4" />
+                See How It Works
+                <ArrowDown className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" />
               </a>
             </motion.div>
+
+            {/* Mini stats row */}
+
+            {/* ── BOTTOM: chat card ── */}
           </div>
-          <motion.div
-            initial={{ opacity: 0, x: 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="relative mx-auto w-full max-w-[420px] animate-float-y will-change-transform lg:max-w-[440px]"
-          >
-            <NuboChatCard compact />
-          </motion.div>
         </div>
       </section>
 
       {/* CAPABILITIES — alternating rows */}
-      <section className="section-y bg-[var(--bg)]" id="how-it-works">
+      <section className="bg-[var(--bg)] pb-16 pt-10 md:pb-24 md:pt-12" id="how-it-works">
         <div className="container-x">
           <SectionLabel number="02">Core Capabilities</SectionLabel>
-          <h2 className="mt-6 max-w-[640px] font-display text-[clamp(32px,4.2vw,48px)] leading-[1.08] text-[var(--ink)]">
+          <h2 className="mt-6 mx-auto max-w-[640px] text-center font-display text-[clamp(32px,4.2vw,48px)] leading-[1.08] text-[var(--ink)]">
             Three pillars. One platform.
           </h2>
 
@@ -284,11 +291,11 @@ export default function NuboPage() {
       <section className="section-y bg-[var(--surface-2)]">
         <div className="container-x">
           <SectionLabel number="03">Architecture</SectionLabel>
-          <div className="mb-12 mt-6 grid items-end gap-6 md:grid-cols-[1fr_auto]">
-            <h2 className="max-w-[640px] font-display text-[clamp(32px,4.2vw,48px)] leading-[1.08] text-[var(--ink)]">
+          <div className="mb-12 mt-6 text-center">
+            <h2 className="mx-auto max-w-[640px] font-display text-[clamp(32px,4.2vw,48px)] leading-[1.08] text-[var(--ink)]">
               Built for production. Audited by design.
             </h2>
-            <p className="max-w-[360px] text-[15px] text-[var(--ink-2)] leading-[1.7]">
+            <p className="mx-auto mt-4 max-w-[480px] text-[15px] text-[var(--ink-2)] leading-[1.7]">
               Every Nubo deployment ships with logging, citations, and guardrails — not as an
               afterthought, as the foundation.
             </p>
@@ -300,9 +307,9 @@ export default function NuboPage() {
       {/* USE CASES carousel */}
       <section className="section-y bg-white">
         <div className="container-x">
-          <div className="mb-10">
+          <div className="mb-10 text-center">
             <SectionLabel number="04">Use Cases</SectionLabel>
-            <h2 className="mt-6 font-display text-[clamp(32px,4.2vw,48px)] leading-[1.08] text-[var(--ink)]">
+            <h2 className="mx-auto mt-6 max-w-[560px] font-display text-[clamp(32px,4.2vw,48px)] leading-[1.08] text-[var(--ink)]">
               One platform. Every industry.
             </h2>
           </div>

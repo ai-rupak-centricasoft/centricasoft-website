@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ShieldCheck, X } from "lucide-react";
+import { X } from "lucide-react";
 
 const CONSENT_COOKIE_NAME = "cs_cookie_consent";
 const CONSENT_STORAGE_KEY = "cs-cookie-consent";
@@ -65,7 +65,7 @@ export function CookieConsentPopup() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[1200] bg-[rgba(0,18,52,0.32)] backdrop-blur-[2px] md:hidden"
+            className="fixed inset-0 z-[1200] bg-[rgba(0,18,52,0.28)] md:hidden"
             aria-hidden
           />
           <motion.aside
@@ -77,9 +77,9 @@ export function CookieConsentPopup() {
             aria-modal="true"
             aria-labelledby="cookie-consent-title"
             aria-describedby="cookie-consent-description"
-            className="fixed inset-x-4 bottom-4 z-[1300] md:inset-x-auto md:right-6 md:bottom-6 md:w-[420px]"
+            className="fixed inset-x-4 bottom-4 z-[1300] sm:inset-x-auto sm:right-6 sm:bottom-6 sm:w-[min(430px,calc(100vw-48px))] lg:right-8 lg:bottom-8"
           >
-            <div className="overflow-hidden border border-[var(--border-2)] bg-white p-6 text-[var(--ink)] shadow-[0_20px_54px_-28px_rgba(0,18,52,0.28)]">
+            <div className="max-h-[calc(100vh-32px)] overflow-y-auto rounded-[8px] border border-[var(--border-2)] bg-white p-6 text-[var(--ink)] shadow-[0_20px_54px_-28px_rgba(0,18,52,0.34)] sm:p-6">
               <div className="relative">
                 <button
                   type="button"
@@ -90,61 +90,50 @@ export function CookieConsentPopup() {
                   <X className="h-4 w-4" />
                 </button>
 
-                <div className="flex items-center gap-3">
-                  <div className="inline-flex h-10 w-10 items-center justify-center border border-[#d7e6f2] bg-[#f4f9fd] text-[#1782c5]">
-                    <ShieldCheck className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <div className="label-mono !text-[10px] !text-[#1782c5]">Privacy controls</div>
-                    <h2
-                      id="cookie-consent-title"
-                      className="mt-1 font-heading text-[20px] font-semibold text-[var(--ink)]"
-                    >
-                      Your cookie preferences
-                    </h2>
-                  </div>
-                </div>
+                <h2
+                  id="cookie-consent-title"
+                  className="pr-12 font-heading text-[21px] font-semibold leading-[1.2] text-[var(--ink)]"
+                >
+                  We value your privacy
+                </h2>
 
                 <p
                   id="cookie-consent-description"
-                  className="mt-5 text-[14px] leading-[1.75] text-[var(--ink-2)]"
+                  className="mt-4 text-[14px] font-medium leading-[1.65] text-[var(--ink-2)]"
                 >
-                  We use essential cookies to keep the site secure and working. With your
-                  permission, we can also use analytics cookies to understand performance and
-                  improve the experience.
-                </p>
-
-                <div className="mt-4 inline-flex items-center gap-2 border border-[#dbe8f3] bg-[#f7fbfe] px-3 py-1.5">
-                  <span className="label-mono !text-[10px] !text-[var(--ink-3)]">
-                    No marketing cookies by default
-                  </span>
-                </div>
-
-                <div className="mt-5 text-[13px] leading-[1.7] text-[var(--ink-3)]">
-                  Read our{" "}
+                  We respect your privacy and your right to control how we collect, use, and share
+                  your personal data. We use cookie data for analytics purposes. By clicking 'Accept
+                  All,' you consent to our{" "}
                   <Link
                     href="/privacy-policy"
-                    className="font-medium text-[#146fa9] transition-colors hover:text-[var(--navy)]"
+                    className="font-semibold text-[var(--sky-deep)] transition-colors hover:text-[var(--navy)]"
                   >
-                    Privacy Policy
+                    Privacy Notice
                   </Link>{" "}
-                  for more detail on how we handle your data.
-                </div>
+                  and{" "}
+                  <Link
+                    href="/privacy-policy"
+                    className="font-semibold text-[var(--sky-deep)] transition-colors hover:text-[var(--navy)]"
+                  >
+                    Cookie Policy
+                  </Link>
+                  .
+                </p>
 
-                <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:justify-end">
+                <div className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <button
                     type="button"
                     onClick={() => handleDecision("rejected")}
                     className="inline-flex h-11 items-center justify-center border border-[var(--border-2)] bg-white px-5 text-[14px] font-medium text-[var(--ink)] transition-all hover:border-[var(--sky-deep)] hover:bg-[var(--surface-2)]"
                   >
-                    Reject all
+                    Reject All
                   </button>
                   <button
                     type="button"
                     onClick={() => handleDecision("accepted")}
-                    className="inline-flex h-11 items-center justify-center bg-[#0b6fb8] px-5 text-[14px] font-medium text-white transition-all hover:bg-[#095f9b]"
+                    className="inline-flex h-11 items-center justify-center border border-[#0b6fb8] bg-[#0b6fb8] px-5 text-[14px] font-medium text-white transition-all hover:border-[#095f9b] hover:bg-[#095f9b]"
                   >
-                    Accept all
+                    Accept All
                   </button>
                 </div>
               </div>
