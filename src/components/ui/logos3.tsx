@@ -22,12 +22,7 @@ interface Logos3Props {
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
-const Logos3 = ({
-  heading,
-  subheading,
-  logos = [],
-  variant = "light",
-}: Logos3Props) => {
+const Logos3 = ({ heading, subheading, logos = [], variant = "light" }: Logos3Props) => {
   const isDark = variant === "dark";
 
   return (
@@ -36,8 +31,8 @@ const Logos3 = ({
         <div className="container-x mb-8 text-center">
           {heading && (
             <p
-              className={`font-mono text-[11px] uppercase tracking-[0.22em] mb-1 ${
-                isDark ? "text-white/35" : "text-[var(--ink-3)]"
+              className={`mb-1 font-mono text-[12px] uppercase tracking-[0.2em] ${
+                isDark ? "text-white/50" : "text-[var(--sky-deep)]"
               }`}
             >
               {heading}
@@ -64,13 +59,20 @@ const Logos3 = ({
                 key={`${logo.id}-${i}`}
                 className="flex basis-1/3 justify-center pl-0 sm:basis-1/4 md:basis-1/5 lg:basis-1/6 xl:basis-1/8"
               >
-                <div className="mx-6 flex shrink-0 items-center justify-center py-3 md:mx-10">
+                <div className="mx-5 flex shrink-0 flex-col items-center justify-center gap-3 py-3 md:mx-8">
                   <img
                     src={logo.image}
                     alt={logo.description}
-                    className={`${logo.className ?? "h-6 w-auto"} opacity-75`}
+                    className={`${logo.className ?? "h-8 w-auto"} scale-110 opacity-85`}
                     draggable={false}
                   />
+                  <span
+                    className={`whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.16em] ${
+                      isDark ? "text-white/45" : "text-[var(--ink-3)]"
+                    }`}
+                  >
+                    {logo.description}
+                  </span>
                 </div>
               </CarouselItem>
             ))}

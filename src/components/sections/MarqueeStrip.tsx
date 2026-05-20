@@ -89,12 +89,8 @@ const TECH_LOGOS = [
 
 export function MarqueeStrip() {
   return (
-    <section className="border-y border-[var(--border)] bg-[var(--surface)] py-10 md:py-12">
-      <Logos3
-        heading="Powered by the tools we trust"
-        logos={TECH_LOGOS}
-        variant="light"
-      />
+    <section className="border-y border-[var(--border)] bg-[var(--surface)] py-11 md:py-14">
+      <Logos3 heading="Powered by the tools we trust" logos={TECH_LOGOS} variant="light" />
     </section>
   );
 }
