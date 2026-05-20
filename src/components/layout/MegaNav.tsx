@@ -34,12 +34,12 @@ const WHAT_WE_DO_SERVICES = [
     title: "Data Analytics & Insights",
   },
   {
-    to: "/what-we-do/data-analytics",
+    to: "/what-we-do/machine-learning",
     icon: <Brain className="h-4 w-4" />,
     title: "Machine Learning & Advanced Analytics",
   },
   {
-    to: "/contact",
+    to: "/what-we-do/app-development",
     icon: <Smartphone className="h-4 w-4" />,
     title: "App Development",
   },
@@ -61,8 +61,7 @@ const WHAT_WE_DO_INDUSTRIES = [
   "Real Estate",
 ];
 
-const MEGA_LABEL_CLASS =
-  "label-mono !text-[0.72rem] md:!text-[0.76rem] !tracking-[0.18em]";
+const MEGA_LABEL_CLASS = "label-mono !text-[0.72rem] md:!text-[0.76rem] !tracking-[0.18em]";
 const MEGA_BODY_CLASS = "text-[0.95rem] md:text-[0.975rem] leading-[1.7]";
 const MEGA_TITLE_CLASS =
   "font-heading text-[0.975rem] xl:text-[1rem] font-semibold leading-[1.35] tracking-[-0.01em]";
@@ -264,7 +263,9 @@ function CompanyPanel() {
       <div className="col-span-4">
         <ColLabel>Latest</ColLabel>
         <Link href="/insights" className="group block">
-          <div className={`${MEGA_LABEL_CLASS} mb-2 !text-[var(--sky-deep)]`}>Insight - Apr 2026</div>
+          <div className={`${MEGA_LABEL_CLASS} mb-2 !text-[var(--sky-deep)]`}>
+            Insight - Apr 2026
+          </div>
           <div className="font-heading text-[1rem] md:text-[1.05rem] font-semibold leading-snug tracking-[-0.01em] text-[var(--ink)] group-hover:text-[var(--navy)]">
             Why agentic AI is the new operating layer for enterprise software
           </div>

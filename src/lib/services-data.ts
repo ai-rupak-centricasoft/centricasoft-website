@@ -1,7 +1,13 @@
 // Per-service narrative content for /what-we-do/* pages
 
 export type ServiceContent = {
-  slug: "agentic-ai" | "genai-chatbots" | "data-engineering" | "data-analytics";
+  slug:
+    | "agentic-ai"
+    | "genai-chatbots"
+    | "data-engineering"
+    | "data-analytics"
+    | "machine-learning"
+    | "app-development";
   pill: string;
   title: string;
   highlight: string;
@@ -542,6 +548,289 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       title: "Demand forecasting for a global apparel brand",
       outcome: "22% inventory reduction · $48M annual savings · Q3 2024",
       client: "Top-20 global retailer",
+    },
+  },
+  "machine-learning": {
+    slug: "machine-learning",
+    pill: "01 - Services - ML",
+    title: "Machine Learning & Advanced Analytics",
+    highlight: "Advanced Analytics",
+    subtitle:
+      "Forecasting, optimization, experimentation, and predictive systems that turn historical data into operational advantage.",
+    problemQuote: "Models only matter when they change the next decision.",
+    problemPoints: [
+      "Forecasts stay trapped in notebooks instead of business workflows.",
+      "Teams lack reliable evaluation, monitoring, and model governance.",
+      "Optimization opportunities hide inside fragmented operational data.",
+    ],
+    offerings: [
+      {
+        icon: "01",
+        title: "Predictive Modeling",
+        body: "Forecast demand, churn, risk, propensity, and operational outcomes with models built for production use.",
+        tags: ["XGBoost", "Prophet", "scikit-learn"],
+      },
+      {
+        icon: "02",
+        title: "Optimization Systems",
+        body: "Build decision engines for pricing, routing, inventory, staffing, and planning constraints.",
+        tags: ["OR-Tools", "Pyomo", "Simulation"],
+      },
+      {
+        icon: "03",
+        title: "Experimentation & Causal Analysis",
+        body: "Design measurement frameworks that separate signal from noise and guide confident product decisions.",
+        tags: ["A/B Tests", "Causal ML", "Lift"],
+      },
+      {
+        icon: "04",
+        title: "Model Operations",
+        body: "Deploy monitored ML pipelines with feature stores, drift alerts, retraining loops, and governance.",
+        tags: ["MLflow", "Feast", "Monitoring"],
+      },
+    ],
+    expertiseNarrative:
+      "CentricaSoft's machine learning practice helps teams move from analysis to action. We build predictive and optimization systems for finance, healthcare, retail, logistics, and SaaS teams where accuracy, monitoring, and business adoption all matter.",
+    expertiseGrid: [
+      { value: 40, suffix: "+", label: "Models delivered" },
+      { value: 10, suffix: "+", label: "Production ML systems" },
+      { value: 6, suffix: "", label: "Forecasting domains" },
+      { value: 95, suffix: "%", label: "Monitored deployments" },
+    ],
+    techStack: [
+      { group: "Modeling", items: ["XGBoost", "LightGBM", "Prophet", "scikit-learn"] },
+      { group: "Deep Learning", items: ["PyTorch", "TensorFlow", "Hugging Face"] },
+      { group: "MLOps", items: ["MLflow", "Feast", "Airflow", "Docker"] },
+      { group: "Serving", items: ["FastAPI", "SageMaker", "Vertex AI", "Azure ML"] },
+    ],
+    approach: [
+      {
+        number: "01",
+        title: "Decision Framing",
+        body: "We start with the business decision, success metric, constraints, and intervention path before modeling begins.",
+      },
+      {
+        number: "02",
+        title: "Data & Feature Strategy",
+        body: "We assess source quality, leakage risk, feature freshness, and labeling strategy for reliable model inputs.",
+      },
+      {
+        number: "03",
+        title: "Model Build & Evaluation",
+        body: "We train, compare, stress test, and explain models against real operating scenarios and baseline heuristics.",
+      },
+      {
+        number: "04",
+        title: "Deploy, Monitor, Improve",
+        body: "We ship models with monitoring, retraining paths, drift detection, and feedback loops for continuous value.",
+      },
+    ],
+    hld: {
+      height: 540,
+      nodes: [
+        {
+          id: "sources",
+          label: "Business Data",
+          sub: "Events - ERP - CRM",
+          x: 4,
+          y: 12,
+          w: 170,
+          variant: "muted",
+        },
+        { id: "features", label: "Feature Layer", sub: "Fresh - governed", x: 34, y: 12, w: 180 },
+        {
+          id: "train",
+          label: "Training Pipeline",
+          sub: "Experiment tracking",
+          x: 62,
+          y: 12,
+          w: 190,
+          variant: "primary",
+        },
+        { id: "registry", label: "Model Registry", sub: "Versioned", x: 62, y: 42, w: 170 },
+        {
+          id: "serve",
+          label: "Serving API",
+          sub: "Batch - realtime",
+          x: 34,
+          y: 66,
+          w: 180,
+          variant: "primary",
+        },
+        {
+          id: "apps",
+          label: "Business Workflow",
+          sub: "Dashboard - app - alert",
+          x: 4,
+          y: 66,
+          w: 190,
+        },
+        {
+          id: "monitor",
+          label: "Monitoring",
+          sub: "Drift - quality - ROI",
+          x: 62,
+          y: 78,
+          w: 190,
+          variant: "muted",
+        },
+      ],
+      edges: [
+        { from: "sources", to: "features" },
+        { from: "features", to: "train" },
+        { from: "train", to: "registry" },
+        { from: "registry", to: "serve" },
+        { from: "serve", to: "apps" },
+        { from: "serve", to: "monitor" },
+        { from: "monitor", to: "features" },
+      ],
+    },
+    caseStudy: {
+      tag: "Retail - Machine Learning",
+      title: "Demand forecasting engine for multi-region inventory planning",
+      outcome: "18% fewer stockouts - 11% lower holding cost",
+      client: "Global consumer goods distributor",
+    },
+  },
+  "app-development": {
+    slug: "app-development",
+    pill: "01 - Services - Product",
+    title: "App Development for Modern Platforms",
+    highlight: "Modern Platforms",
+    subtitle:
+      "Web and mobile products connected to AI, data, and enterprise systems from day one - built to scale beyond the demo.",
+    problemQuote: "Great apps are not screens. They are workflows that hold up.",
+    problemPoints: [
+      "Product ideas stall when frontend, data, and backend work happen in silos.",
+      "Internal tools become slow, inconsistent, and hard to maintain.",
+      "AI and analytics features fail when they are bolted on after launch.",
+    ],
+    offerings: [
+      {
+        icon: "01",
+        title: "Web Application Development",
+        body: "Build fast, responsive, accessible web apps with thoughtful UX and production-grade engineering patterns.",
+        tags: ["Next.js", "React", "TypeScript"],
+      },
+      {
+        icon: "02",
+        title: "Mobile & Cross-Platform Apps",
+        body: "Ship mobile experiences for field teams, customers, and operations with shared APIs and clean release paths.",
+        tags: ["React Native", "PWA", "Expo"],
+      },
+      {
+        icon: "03",
+        title: "Enterprise Workflow Tools",
+        body: "Design dashboards, portals, admin systems, and operations tools that reduce manual work.",
+        tags: ["RBAC", "Dashboards", "Workflow"],
+      },
+      {
+        icon: "04",
+        title: "AI & Data Product Integration",
+        body: "Embed agents, chat, analytics, search, and decision intelligence directly into product workflows.",
+        tags: ["RAG", "APIs", "Analytics"],
+      },
+    ],
+    expertiseNarrative:
+      "Our product engineering teams build applications where usability, data, AI, and reliability meet. We work across SaaS products, internal operations platforms, customer portals, and workflow tools that need to be adopted by real teams.",
+    expertiseGrid: [
+      { value: 45, suffix: "+", label: "Products shipped" },
+      { value: 12, suffix: "+", label: "Enterprise portals" },
+      { value: 99, suffix: "%", label: "Uptime targets" },
+      { value: 4, suffix: "", label: "Platform surfaces" },
+    ],
+    techStack: [
+      { group: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind"] },
+      { group: "Backend", items: ["Node.js", "FastAPI", "PostgreSQL", "GraphQL"] },
+      { group: "Mobile", items: ["React Native", "Expo", "PWA"] },
+      { group: "Cloud", items: ["AWS", "Azure", "Vercel", "Docker"] },
+    ],
+    approach: [
+      {
+        number: "01",
+        title: "Product Discovery",
+        body: "We map users, workflows, permissions, data dependencies, and success metrics before defining the build plan.",
+      },
+      {
+        number: "02",
+        title: "UX & Architecture",
+        body: "We shape interaction patterns, information architecture, API boundaries, and component systems together.",
+      },
+      {
+        number: "03",
+        title: "Iterative Build",
+        body: "We deliver in usable slices with testing, reviews, analytics, and stakeholder feedback built into each cycle.",
+      },
+      {
+        number: "04",
+        title: "Launch & Operate",
+        body: "We deploy with observability, performance checks, release workflows, and a roadmap for continuous improvement.",
+      },
+    ],
+    hld: {
+      height: 540,
+      nodes: [
+        {
+          id: "users",
+          label: "Users",
+          sub: "Customer - ops - admin",
+          x: 4,
+          y: 16,
+          w: 170,
+          variant: "muted",
+        },
+        {
+          id: "ui",
+          label: "App Interface",
+          sub: "Web - mobile",
+          x: 30,
+          y: 16,
+          w: 180,
+          variant: "primary",
+        },
+        { id: "api", label: "API Layer", sub: "Auth - RBAC", x: 58, y: 16, w: 170 },
+        {
+          id: "data",
+          label: "Data Services",
+          sub: "DB - warehouse",
+          x: 58,
+          y: 46,
+          w: 170,
+          variant: "muted",
+        },
+        { id: "ai", label: "AI Services", sub: "Agents - search - chat", x: 30, y: 66, w: 190 },
+        {
+          id: "ops",
+          label: "Observability",
+          sub: "Logs - metrics",
+          x: 4,
+          y: 66,
+          w: 170,
+          variant: "primary",
+        },
+        {
+          id: "integrations",
+          label: "Integrations",
+          sub: "CRM - ERP - tools",
+          x: 78,
+          y: 66,
+          w: 160,
+        },
+      ],
+      edges: [
+        { from: "users", to: "ui" },
+        { from: "ui", to: "api" },
+        { from: "api", to: "data" },
+        { from: "api", to: "ai" },
+        { from: "api", to: "integrations" },
+        { from: "ui", to: "ops" },
+      ],
+    },
+    caseStudy: {
+      tag: "SaaS - Product Engineering",
+      title: "AI-enabled operations portal for distributed service teams",
+      outcome: "31% faster case handling - 42% fewer manual handoffs",
+      client: "Enterprise field operations provider",
     },
   },
 };

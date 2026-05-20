@@ -11,8 +11,8 @@ const LINKS = {
     { label: "GenAI Chatbots", href: "/what-we-do/genai-chatbots" },
     { label: "Data Engineering", href: "/what-we-do/data-engineering" },
     { label: "Data Analytics", href: "/what-we-do/data-analytics" },
-    { label: "ML & Advanced Analytics", href: "/what-we-do/data-analytics" },
-    { label: "App Development", href: "/contact" },
+    { label: "ML & Advanced Analytics", href: "/what-we-do/machine-learning" },
+    { label: "App Development", href: "/what-we-do/app-development" },
   ],
   Products: [{ label: "Nubo Platform", href: "/products/nubo" }],
   Company: [

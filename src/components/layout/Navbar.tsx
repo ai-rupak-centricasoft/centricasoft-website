@@ -19,8 +19,8 @@ const MOBILE_SUBNAV: Record<Panel, { label: string; href: string }[]> = {
     { label: "Generative AI Chatbots", href: "/what-we-do/genai-chatbots" },
     { label: "Data Engineering & Pipelines", href: "/what-we-do/data-engineering" },
     { label: "Data Analytics & Insights", href: "/what-we-do/data-analytics" },
-    { label: "Machine Learning & Advanced Analytics", href: "/what-we-do/data-analytics" },
-    { label: "App Development", href: "/contact" },
+    { label: "Machine Learning & Advanced Analytics", href: "/what-we-do/machine-learning" },
+    { label: "App Development", href: "/what-we-do/app-development" },
   ],
   products: [{ label: "Nubo", href: "/products/nubo" }],
   company: [

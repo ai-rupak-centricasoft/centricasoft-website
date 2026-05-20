@@ -7,6 +7,8 @@ const SITE_ROUTES = [
   { path: "/what-we-do/genai-chatbots", priority: 0.9, changeFrequency: "monthly" },
   { path: "/what-we-do/data-engineering", priority: 0.9, changeFrequency: "monthly" },
   { path: "/what-we-do/data-analytics", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/what-we-do/machine-learning", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/what-we-do/app-development", priority: 0.9, changeFrequency: "monthly" },
   { path: "/products/nubo", priority: 0.9, changeFrequency: "weekly" },
   { path: "/company/about", priority: 0.8, changeFrequency: "monthly" },
   { path: "/company/clients", priority: 0.8, changeFrequency: "monthly" },

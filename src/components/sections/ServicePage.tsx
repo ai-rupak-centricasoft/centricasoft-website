@@ -41,6 +41,16 @@ const SERVICE_SNAPSHOT_COPY: Record<ServiceContent["slug"], { headline: string; 
       summary:
         "Semantic layers, executive dashboards, predictive models, and embedded insights built around business action.",
     },
+    "machine-learning": {
+      headline: "Models that move decisions.",
+      summary:
+        "Forecasting, optimization, experimentation, and monitored ML systems built for operational adoption.",
+    },
+    "app-development": {
+      headline: "Products built around workflows.",
+      summary:
+        "Web and mobile apps connected to data, AI, APIs, and enterprise systems from the first release.",
+    },
   };
 
 const SERVICE_EXPERTISE_FOCUS: Record<ServiceContent["slug"], { title: string; body: string }[]> = {
@@ -98,6 +108,34 @@ const SERVICE_EXPERTISE_FOCUS: Record<ServiceContent["slug"], { title: string; b
     {
       title: "Operational insight",
       body: "Forecasts, alerts, embedded analytics, and models delivered into the workflows where action happens.",
+    },
+  ],
+  "machine-learning": [
+    {
+      title: "Predictive systems",
+      body: "Forecasting, scoring, and classification models shaped around concrete business actions.",
+    },
+    {
+      title: "Optimization engines",
+      body: "Decision logic for planning, pricing, routing, inventory, and capacity constraints.",
+    },
+    {
+      title: "Production MLOps",
+      body: "Model monitoring, retraining loops, feature governance, and deployment patterns that hold up.",
+    },
+  ],
+  "app-development": [
+    {
+      title: "Product architecture",
+      body: "UX, frontend, backend, data, and integrations designed as one coherent product system.",
+    },
+    {
+      title: "Workflow delivery",
+      body: "Portals, dashboards, tools, and customer apps built around repeated daily use.",
+    },
+    {
+      title: "AI-ready platforms",
+      body: "Applications prepared for embedded agents, analytics, search, and automation from day one.",
     },
   ],
 };

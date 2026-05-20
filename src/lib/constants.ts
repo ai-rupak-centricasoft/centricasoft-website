@@ -48,6 +48,22 @@ export const SERVICES = [
     body: "Self-serve analytics, executive dashboards, and predictive models that move metrics that matter.",
     tags: ["dbt", "Looker", "Power BI"],
   },
+  {
+    slug: "machine-learning",
+    icon: "ML",
+    title: "Machine Learning & Advanced Analytics",
+    short: "Models that improve decisions.",
+    body: "Forecasting, optimization, experimentation, and monitored ML systems built for operational adoption.",
+    tags: ["XGBoost", "MLflow", "MLOps"],
+  },
+  {
+    slug: "app-development",
+    icon: "APP",
+    title: "App Development",
+    short: "Products built around workflows.",
+    body: "Web and mobile applications connected to AI, data, APIs, and enterprise systems from the first release.",
+    tags: ["Next.js", "React Native", "APIs"],
+  },
 ];
 
 export const STATS = [
