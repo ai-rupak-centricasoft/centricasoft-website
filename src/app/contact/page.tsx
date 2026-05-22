@@ -108,8 +108,11 @@ export default function ContactPage() {
     if (errors[k]) setErrors((e) => ({ ...e, [k]: undefined }));
   };
 
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setSubmitError(null);
     const result = contactSchema.safeParse(form);
     if (!result.success) {
       const next: Partial<Record<keyof FormState, string>> = {};
@@ -121,9 +124,22 @@ export default function ContactPage() {
       return;
     }
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 900));
-    setSubmitting(false);
-    setDone(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(result.data),
+      });
+      if (!res.ok) {
+        setSubmitError("Something went wrong. Please try again or email us directly.");
+        return;
+      }
+      setDone(true);
+    } catch {
+      setSubmitError("Network error. Please check your connection and try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -340,6 +356,9 @@ export default function ContactPage() {
                         textarea
                       />
 
+                      {submitError && (
+                        <p className="text-[13px] text-red-500 px-1">{submitError}</p>
+                      )}
                       <button
                         type="submit"
                         disabled={submitting}
