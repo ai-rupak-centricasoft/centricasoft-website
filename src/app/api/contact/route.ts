@@ -25,8 +25,8 @@ export async function POST(request: Request) {
 
     const { error } = await resend.emails.send({
       from: "CentricaSoft Contact <onboarding@resend.dev>",
-      // to: "contact@centricasoft.com",
-      to: "swarrupak@gmail.com",
+      // to: "swarrupak@gmail.com",
+      to: "contact@centricasoft.com",
       replyTo: email,
       subject: `New enquiry: ${interest} — from ${name}`,
       html: `
