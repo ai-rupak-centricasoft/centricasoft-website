@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
-import { readFileSync } from "fs";
-import { join } from "path";
 import { SESClient, SendRawEmailCommand } from "@aws-sdk/client-ses";
 import { z } from "zod";
+import { buildContactRawEmail } from "./email-template";
 
 // On Amplify (and any AWS-hosted environment) credentials are picked up
 // automatically from the execution role — no hardcoded keys needed.
@@ -25,27 +24,19 @@ const schema = z.object({
   company: z.string().trim().max(120).optional(),
   interest: z.string().min(1),
   message: z.string().trim().min(10).max(1500),
+  turnstileToken: z.string().min(1),
 });
 
-function escapeHtml(value: string) {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
-function sanitizeHeader(value: string) {
-  return value.replace(/[\r\n]+/g, " ").trim();
-}
-
-function encodeMimeHeader(value: string) {
-  return `=?UTF-8?B?${Buffer.from(sanitizeHeader(value), "utf8").toString("base64")}?=`;
-}
-
-function wrapBase64(value: string) {
-  return value.match(/.{1,76}/g)?.join("\r\n") ?? value;
+async function verifyTurnstile(token: string): Promise<boolean> {
+  const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+    method: "POST",
+    body: new URLSearchParams({
+      secret: process.env.TURNSTILE_SECRET_KEY ?? "",
+      response: token,
+    }),
+  });
+  const data = (await res.json()) as { success: boolean };
+  return data.success;
 }
 
 export async function POST(request: Request) {
@@ -57,260 +48,17 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invalid form data." }, { status: 400 });
     }
 
-    const { name, email, company, interest, message } = parsed.data;
-    const safeName = escapeHtml(name);
-    const safeEmail = escapeHtml(email);
-    const safeCompany = company ? escapeHtml(company) : "";
-    const safeInterest = escapeHtml(interest);
-    const safeMessage = escapeHtml(message);
-    const replySubject = encodeURIComponent(`Re: Your enquiry about ${interest}`);
-
-    const html = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <meta name="color-scheme" content="light dark"/>
-  <meta name="supported-color-schemes" content="light dark"/>
-  <title>New Enquiry</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700;800&display=swap');
-    :root { color-scheme: light dark; supported-color-schemes: light dark; }
-    @media only screen and (max-width: 520px) {
-      .email-shell { padding: 18px 10px !important; }
-      .email-card { width: 100% !important; border-radius: 12px !important; }
-      .email-header,
-      .email-body,
-      .email-footer { padding-left: 22px !important; padding-right: 22px !important; }
-      .email-header { padding-top: 26px !important; padding-bottom: 24px !important; }
-      .email-body { padding-top: 28px !important; padding-bottom: 30px !important; }
-      .email-brand,
-      .email-header-badge,
-      .email-footer-left,
-      .email-footer-right { display: block !important; width: 100% !important; text-align: left !important; }
-      .email-header-badge { padding-top: 18px !important; }
-      .brand-logo-cell { width: 42px !important; }
-      .brand-logo { width: 36px !important; height: 36px !important; }
-      .email-title { font-size: 22px !important; line-height: 1.28 !important; }
-      .detail-label,
-      .detail-value { display: block !important; width: 100% !important; text-align: left !important; }
-      .detail-label { padding-bottom: 2px !important; }
-      .detail-value { padding-top: 0 !important; }
-      .reply-link { display: block !important; text-align: center !important; }
-      .email-footer-right { padding-top: 10px !important; }
+    const isHuman = await verifyTurnstile(parsed.data.turnstileToken);
+    if (!isHuman) {
+      return NextResponse.json({ error: "Bot check failed. Please try again." }, { status: 400 });
     }
-    @media (prefers-color-scheme: dark) {
-      body,
-      .email-shell { background-color: #06172F !important; }
-      .email-card { background-color: #0B1B33 !important; border-color: #1D4162 !important; }
-      .email-body,
-      .email-footer { background-color: #0B1B33 !important; }
-      .email-title,
-      .name-value,
-      .interest-value { color: #FFFFFF !important; }
-      .muted-text,
-      .label-text,
-      .footer-text { color: #A8CFE6 !important; }
-      .info-card,
-      .message-card { background-color: #102745 !important; border-color: #1D4162 !important; }
-      .detail-table,
-      .detail-border { border-color: #1D4162 !important; }
-      .body-copy,
-      .company-value { color: #D6ECFA !important; }
-      .logo-tile { background-color: #FFFFFF !important; border-color: rgba(214,236,250,0.7) !important; }
-    }
-  </style>
-</head>
-<body style="margin:0;padding:0;background-color:#F7FAFD;font-family:'Albert Sans',Arial,Helvetica,sans-serif;color:#001234">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="email-shell" style="background-color:#F7FAFD;padding:32px 16px">
-    <tr>
-      <td align="center">
-        <table role="presentation" width="620" cellpadding="0" cellspacing="0" class="email-card" style="max-width:620px;width:100%;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #D6E8F4">
 
-          <!-- HEADER -->
-          <tr>
-            <td class="email-header" style="background:#002057;background-image:linear-gradient(135deg,#001234 0%,#002057 48%,#0077B6 100%);padding:32px 36px 28px">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td valign="middle" class="email-brand">
-                    <table role="presentation" cellpadding="0" cellspacing="0">
-                      <tr>
-                        <td class="brand-logo-cell" width="56" valign="middle" style="padding:0 14px 0 0">
-                          <table role="presentation" width="44" height="44" cellpadding="0" cellspacing="0" class="logo-tile" style="width:44px;height:44px;background:#ffffff;border-radius:10px;border:1px solid rgba(214,236,250,0.55)">
-                            <tr>
-                              <td align="center" valign="middle" style="padding:5px">
-                                <img class="brand-logo" src="cid:centricasoft-logo@centricasoft.com" width="32" height="32" alt="CentricaSoft" style="display:block;width:32px;height:32px;border:0;outline:none;text-decoration:none"/>
-                              </td>
-                            </tr>
-                          </table>
-                        </td>
-                        <td valign="middle">
-                          <p style="margin:0;font-family:'Albert Sans',Arial,Helvetica,sans-serif;font-size:23px;font-weight:800;color:#ffffff;letter-spacing:-0.02em;line-height:1.1">CentricaSoft LLC</p>
-                          <p style="margin:8px 0 0;font-family:'Albert Sans',Arial,Helvetica,sans-serif;font-size:12px;color:#A8CFE6;letter-spacing:0.08em;text-transform:uppercase">Innovate. Optimize. Operationalize.</p>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                  <td align="right" valign="middle" class="email-header-badge">
-                    <span style="display:inline-block;border:1px solid rgba(168,207,230,0.36);border-radius:999px;padding:8px 13px;font-family:'Albert Sans',Arial,Helvetica,sans-serif;font-size:10px;font-weight:700;color:#D6ECFA;letter-spacing:0.14em;text-transform:uppercase">Contact Form</span>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-
-          <!-- ACCENT BAR -->
-          <tr>
-            <td style="background:#1EBFFF;background-image:linear-gradient(90deg,#1EBFFF 0%,#0077B6 52%,#002057 100%);height:4px;font-size:0;line-height:0">&nbsp;</td>
-          </tr>
-
-          <!-- BODY -->
-          <tr>
-            <td class="email-body" style="padding:34px 36px 36px">
-
-              <!-- Title -->
-              <h1 class="email-title" style="margin:0;font-family:'Albert Sans',Arial,Helvetica,sans-serif;font-size:24px;font-weight:800;line-height:1.25;color:#001234;letter-spacing:-0.02em">New enquiry received</h1>
-              <p class="muted-text" style="margin:8px 0 28px;font-family:'Albert Sans',Arial,Helvetica,sans-serif;font-size:14px;line-height:1.65;color:#6B8FA8">A visitor submitted the contact form. Their details are below.</p>
-
-              <!-- Sender card -->
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="info-card" style="border-collapse:separate;border-spacing:0;background:#F7FAFD;border:1px solid #D6E8F4;border-radius:12px;margin-bottom:24px">
-                <tr>
-                  <td style="padding:20px 22px 10px">
-                    <p class="label-text" style="margin:0 0 4px;font-family:'Albert Sans',Arial,Helvetica,sans-serif;font-size:10px;font-weight:800;color:#6B8FA8;letter-spacing:0.14em;text-transform:uppercase">Name</p>
-                    <p class="name-value" style="margin:0;font-family:'Albert Sans',Arial,Helvetica,sans-serif;font-size:18px;font-weight:800;color:#001234;line-height:1.35">${safeName}</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="padding:0 22px">
-                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="detail-table" style="border-top:1px solid #E0EDF7">
-                      <tr>
-                        <td width="36%" class="detail-label label-text" style="padding:14px 0;font-family:'Albert Sans',Arial,Helvetica,sans-serif;font-size:12px;font-weight:800;color:#6B8FA8;letter-spacing:0.08em;text-transform:uppercase">Email</td>
-                        <td class="detail-value" style="padding:14px 0;font-family:'Albert Sans',Arial,Helvetica,sans-serif;font-size:14px;color:#1A3A5C;text-align:right"><a href="mailto:${safeEmail}" style="color:#0077B6;text-decoration:none;font-weight:700">${safeEmail}</a></td>
-                      </tr>
-                      ${
-                        safeCompany
-                          ? `<tr>
-                        <td width="36%" class="detail-label label-text detail-border" style="padding:14px 0;border-top:1px solid #E0EDF7;font-family:'Albert Sans',Arial,Helvetica,sans-serif;font-size:12px;font-weight:800;color:#6B8FA8;letter-spacing:0.08em;text-transform:uppercase">Company</td>
-                        <td class="detail-value company-value detail-border" style="padding:14px 0;border-top:1px solid #E0EDF7;font-family:'Albert Sans',Arial,Helvetica,sans-serif;font-size:14px;color:#1A3A5C;text-align:right;font-weight:700">${safeCompany}</td>
-                      </tr>`
-                          : ""
-                      }
-                      <tr>
-                        <td width="36%" class="detail-label label-text detail-border" style="padding:14px 0;border-top:1px solid #E0EDF7;font-family:'Albert Sans',Arial,Helvetica,sans-serif;font-size:12px;font-weight:800;color:#6B8FA8;letter-spacing:0.08em;text-transform:uppercase">Interest</td>
-                        <td class="detail-value interest-value detail-border" style="padding:14px 0;border-top:1px solid #E0EDF7;font-family:'Albert Sans',Arial,Helvetica,sans-serif;font-size:14px;color:#001234;text-align:right;font-weight:800">${safeInterest}</td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-              </table>
-
-              <!-- Message label -->
-              <p class="label-text" style="margin:0 0 10px;font-family:'Albert Sans',Arial,Helvetica,sans-serif;font-size:11px;font-weight:800;color:#6B8FA8;letter-spacing:0.14em;text-transform:uppercase">Message</p>
-
-              <!-- Message body -->
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px">
-                <tr>
-                  <td class="message-card" style="background:#ffffff;border:1px solid #D6E8F4;border-radius:12px;padding:20px 22px">
-                    <p class="body-copy" style="margin:0;font-family:'Albert Sans',Arial,Helvetica,sans-serif;font-size:15px;color:#1A3A5C;line-height:1.75;white-space:pre-wrap">${safeMessage}</p>
-                  </td>
-                </tr>
-              </table>
-
-              <!-- Reply CTA -->
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td>
-                    <a href="mailto:${safeEmail}?subject=${replySubject}" class="reply-link" style="display:inline-block;background:#002057;border-radius:999px;padding:13px 22px;font-family:'Albert Sans',Arial,Helvetica,sans-serif;font-size:13px;font-weight:800;color:#ffffff;text-decoration:none;letter-spacing:0.02em">Reply to ${safeName} &rarr;</a>
-                  </td>
-                </tr>
-              </table>
-
-            </td>
-          </tr>
-
-          <!-- FOOTER -->
-          <tr>
-            <td class="email-footer" style="background:#F7FAFD;border-top:1px solid #E0EDF7;padding:20px 36px">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td class="email-footer-left">
-                    <p class="footer-text" style="margin:0;font-family:'Albert Sans',Arial,Helvetica,sans-serif;font-size:11px;color:#6B8FA8;line-height:1.5">&copy; 2026 CentricaSoft LLC</p>
-                  </td>
-                  <td align="right" valign="middle" class="email-footer-right">
-                    <a href="https://centricasoft.com" style="font-family:'Albert Sans',Arial,Helvetica,sans-serif;font-size:11px;color:#0077B6;text-decoration:none;font-weight:800">centricasoft.com</a>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-
-        </table>
-      </td>
-    </tr>
-  </table>
-</body>
-</html>`;
-
-    const logoBase64 = readFileSync(
-      join(process.cwd(), "public", "assest", "logo-email.png"),
-    ).toString("base64");
-    const subject = `New enquiry: ${interest} - from ${name}`;
-    const plainText = [
-      "New enquiry received",
-      "",
-      `Name: ${name}`,
-      `Email: ${email}`,
-      company ? `Company: ${company}` : "",
-      `Interest: ${interest}`,
-      "",
-      message,
-    ]
-      .filter(Boolean)
-      .join("\n");
-    const relatedBoundary = `related-${Date.now()}`;
-    const alternativeBoundary = `alternative-${Date.now()}`;
-    const rawMessage = [
-      'From: "CentricaSoft Contact" <contact@centricasoft.com>',
-      "To: contact@centricasoft.com",
-      `Reply-To: ${sanitizeHeader(email)}`,
-      `Subject: ${encodeMimeHeader(subject)}`,
-      "MIME-Version: 1.0",
-      `Content-Type: multipart/related; boundary="${relatedBoundary}"`,
-      "",
-      `--${relatedBoundary}`,
-      `Content-Type: multipart/alternative; boundary="${alternativeBoundary}"`,
-      "",
-      `--${alternativeBoundary}`,
-      'Content-Type: text/plain; charset="UTF-8"',
-      "Content-Transfer-Encoding: base64",
-      "",
-      wrapBase64(Buffer.from(plainText, "utf8").toString("base64")),
-      "",
-      `--${alternativeBoundary}`,
-      'Content-Type: text/html; charset="UTF-8"',
-      "Content-Transfer-Encoding: base64",
-      "",
-      wrapBase64(Buffer.from(html, "utf8").toString("base64")),
-      "",
-      `--${alternativeBoundary}--`,
-      "",
-      `--${relatedBoundary}`,
-      'Content-Type: image/png; name="logo-email.png"',
-      "Content-Transfer-Encoding: base64",
-      "Content-ID: <centricasoft-logo@centricasoft.com>",
-      "X-Attachment-Id: centricasoft-logo@centricasoft.com",
-      'Content-Disposition: inline; filename="logo-email.png"',
-      "",
-      wrapBase64(logoBase64),
-      "",
-      `--${relatedBoundary}--`,
-      "",
-    ].join("\r\n");
+    const { rawMessage } = buildContactRawEmail(parsed.data);
 
     await ses.send(
       new SendRawEmailCommand({
-        Source: "CentricaSoft Contact <contact@centricasoft.com>",
-        Destinations: ["contact@centricasoft.com"],
+        Source: "CentricaSoft Contact <Rupak.Swar@centricasoft.com>",
+        Destinations: ["Rupak.Swar@centricasoft.com"],
         RawMessage: { Data: Buffer.from(rawMessage, "utf8") },
       }),
     );

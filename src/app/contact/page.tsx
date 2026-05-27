@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, useRef, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { z } from "zod";
 import { ArrowRight, Check, Mail, MapPin, Phone } from "lucide-react";
+import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 import { PageHero } from "@/components/sections/PageHero";
 import { OFFICE_LOCATIONS, SITE } from "@/lib/constants";
 
@@ -102,6 +103,8 @@ export default function ContactPage() {
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileRef = useRef<TurnstileInstance>(null);
 
   const update = (k: keyof FormState) => (v: string) => {
     setForm((s) => ({ ...s, [k]: v }));
@@ -113,6 +116,10 @@ export default function ContactPage() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setSubmitError(null);
+    if (!turnstileToken) {
+      setSubmitError("Please wait for the security check to complete.");
+      return;
+    }
     const result = contactSchema.safeParse(form);
     if (!result.success) {
       const next: Partial<Record<keyof FormState, string>> = {};
@@ -128,14 +135,18 @@ export default function ContactPage() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(result.data),
+        body: JSON.stringify({ ...result.data, turnstileToken }),
       });
       if (!res.ok) {
+        turnstileRef.current?.reset();
+        setTurnstileToken(null);
         setSubmitError("Something went wrong. Please try again or email us directly.");
         return;
       }
       setDone(true);
     } catch {
+      turnstileRef.current?.reset();
+      setTurnstileToken(null);
       setSubmitError("Network error. Please check your connection and try again.");
     } finally {
       setSubmitting(false);
@@ -356,12 +367,21 @@ export default function ContactPage() {
                         textarea
                       />
 
+                      <Turnstile
+                        ref={turnstileRef}
+                        siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? ""}
+                        onSuccess={(token) => setTurnstileToken(token)}
+                        onExpire={() => setTurnstileToken(null)}
+                        onError={() => setTurnstileToken(null)}
+                        options={{ theme: "light", size: "normal" }}
+                      />
+
                       {submitError && (
                         <p className="text-[13px] text-red-500 px-1">{submitError}</p>
                       )}
                       <button
                         type="submit"
-                        disabled={submitting}
+                        disabled={submitting || !turnstileToken}
                         className="group relative w-full md:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[var(--navy)] text-white text-[14px] font-medium hover:bg-[var(--navy-deep)] disabled:opacity-60 transition-all"
                       >
                         {submitting ? "Sending…" : "Send message"}
