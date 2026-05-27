@@ -45,11 +45,13 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     highlight: "Autonomous",
     subtitle:
       "AI that doesn't just answer — it acts, adapts, and delivers outcomes. Multi-agent architectures with tool use, memory, and reflection.",
-    problemQuote: "Most AI tells you what to do. Ours does it for you.",
+    problemQuote:
+      "Agentic AI should not just recommend the next step. It should complete the workflow.",
     problemPoints: [
-      "Manual processes bottleneck intelligent automation at every step.",
-      "LLM outputs require constant human intervention and validation.",
-      "Enterprise systems remain disconnected from real AI workflows.",
+      "Manual handoffs slow down high-value workflows that should run with intelligent automation.",
+      "LLM outputs need validation, guardrails, and business context before they can be trusted.",
+      "Disconnected enterprise systems prevent AI agents from taking secure, useful action.",
+      "Without monitoring and human review paths, autonomous systems are difficult to scale responsibly.",
     ],
     offerings: [
       {
@@ -167,11 +169,13 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     highlight: "Done Right",
     subtitle:
       "Enterprise chatbots that ground every answer in your data. RAG, prompt engineering, and guardrails — production-hardened.",
-    problemQuote: "A chatbot that hallucinates is worse than no chatbot at all.",
+    problemQuote:
+      "Enterprise chatbots only work when every answer is grounded, governed, and useful.",
     problemPoints: [
-      "Generic LLMs invent facts and ignore your enterprise context.",
-      "Off-the-shelf chatbots leak data and lack auditability.",
-      "Most teams ship demos, not production-grade conversational systems.",
+      "Generic LLMs miss enterprise context and can produce confident but unreliable answers.",
+      "Knowledge access needs role awareness, source control, and auditability from day one.",
+      "Most chatbot projects stall after demos because retrieval quality is never productionized.",
+      "Without evaluation loops, teams cannot measure accuracy, adoption, or business impact.",
     ],
     offerings: [
       {
@@ -303,11 +307,12 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     highlight: "Petabyte Scale",
     subtitle:
       "Streaming ingestion, lakehouse architectures, and orchestration that handle 10TB+ daily — without flinching, without overspending.",
-    problemQuote: "Your data isn't the problem. The pipes carrying it are.",
+    problemQuote: "Data becomes an advantage only when the pipelines behind it are reliable.",
     problemPoints: [
-      "Legacy batch systems can't keep up with real-time business decisions.",
-      "Cloud bills balloon when pipelines aren't engineered for cost.",
-      "Data quality issues compound silently until reports collapse.",
+      "Legacy batch systems cannot keep pace with real-time operations and decision cycles.",
+      "Cloud costs rise quickly when ingestion, storage, and compute are not engineered together.",
+      "Data quality issues compound silently until reports, models, and workflows lose trust.",
+      "Fragmented ownership makes pipelines harder to monitor, debug, and scale.",
     ],
     offerings: [
       {
@@ -435,11 +440,12 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     highlight: "Move Metrics",
     subtitle:
       "Self-serve analytics, executive dashboards, and predictive models that turn raw data into decisions — and decisions into outcomes.",
-    problemQuote: "Dashboards don't drive decisions. Insight engineering does.",
+    problemQuote: "Analytics creates value when it changes the decisions teams make every day.",
     problemPoints: [
-      "Most BI deployments collect dust because they answer the wrong questions.",
-      "Self-serve analytics fails without semantic governance and data trust.",
-      "Predictive models stay in notebooks instead of business workflows.",
+      "Many BI deployments go unused because they answer reports, not decisions.",
+      "Self-serve analytics breaks down without governed metrics and trusted definitions.",
+      "Predictive models lose value when they remain in notebooks instead of workflows.",
+      "Teams need clear adoption paths so insights become actions, not archived dashboards.",
     ],
     offerings: [
       {
@@ -557,11 +563,12 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     highlight: "Advanced Analytics",
     subtitle:
       "Forecasting, optimization, experimentation, and predictive systems that turn historical data into operational advantage.",
-    problemQuote: "Models only matter when they change the next decision.",
+    problemQuote: "Machine learning matters when models improve the next business decision.",
     problemPoints: [
-      "Forecasts stay trapped in notebooks instead of business workflows.",
-      "Teams lack reliable evaluation, monitoring, and model governance.",
-      "Optimization opportunities hide inside fragmented operational data.",
+      "Forecasts and scores often stay trapped in notebooks instead of business workflows.",
+      "Teams need reliable evaluation, monitoring, and governance before models can scale.",
+      "Optimization opportunities remain hidden inside fragmented operational data.",
+      "Without feedback loops, model performance drifts away from real-world conditions.",
     ],
     offerings: [
       {
@@ -699,11 +706,13 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     highlight: "Modern Platforms",
     subtitle:
       "Web and mobile products connected to AI, data, and enterprise systems from day one - built to scale beyond the demo.",
-    problemQuote: "Great apps are not screens. They are workflows that hold up.",
+    problemQuote:
+      "Great applications are not just screens. They are workflows that hold up in production.",
     problemPoints: [
-      "Product ideas stall when frontend, data, and backend work happen in silos.",
-      "Internal tools become slow, inconsistent, and hard to maintain.",
-      "AI and analytics features fail when they are bolted on after launch.",
+      "Product ideas slow down when frontend, backend, data, and UX move in separate lanes.",
+      "Internal tools become hard to maintain when workflows are not designed end to end.",
+      "AI and analytics features fail when they are bolted on after the product architecture is set.",
+      "Teams need applications that are observable, secure, and easy to evolve after launch.",
     ],
     offerings: [
       {
