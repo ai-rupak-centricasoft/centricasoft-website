@@ -6,14 +6,15 @@ import { z } from "zod";
 
 // On Amplify (and any AWS-hosted environment) credentials are picked up
 // automatically from the execution role — no hardcoded keys needed.
-// For local dev, set AWS_SES_ACCESS_KEY_ID / AWS_SES_SECRET_ACCESS_KEY in .env.local.
+// For local dev, set SES_ACCESS_KEY_ID / SES_SECRET_ACCESS_KEY in .env.local.
+// Note: Amplify blocks the "AWS_" prefix on env vars, so we use "SES_" instead.
 const ses = new SESClient({
-  region: process.env.AWS_SES_REGION ?? "us-east-1",
-  ...(process.env.AWS_SES_ACCESS_KEY_ID && {
+  region: process.env.SES_REGION ?? "us-east-1",
+  ...(process.env.SES_ACCESS_KEY_ID && {
     credentials: {
-      accessKeyId: process.env.AWS_SES_ACCESS_KEY_ID,
-      secretAccessKey: process.env.AWS_SES_SECRET_ACCESS_KEY ?? "",
-      ...(process.env.AWS_SESSION_TOKEN && { sessionToken: process.env.AWS_SESSION_TOKEN }),
+      accessKeyId: process.env.SES_ACCESS_KEY_ID,
+      secretAccessKey: process.env.SES_SECRET_ACCESS_KEY ?? "",
+      ...(process.env.SES_SESSION_TOKEN && { sessionToken: process.env.SES_SESSION_TOKEN }),
     },
   }),
 });
