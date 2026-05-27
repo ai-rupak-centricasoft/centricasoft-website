@@ -308,8 +308,8 @@ export async function POST(request: Request) {
 
     await ses.send(
       new SendRawEmailCommand({
-        Source: "CentricaSoft Contact <Rupak.Swar@centricasoft.com>",
-        Destinations: ["Rupak.Swar@centricasoft.com"],
+        Source: "CentricaSoft Contact <contact@centricasoft.com>",
+        Destinations: ["contact@centricasoft.com"],
         RawMessage: { Data: Buffer.from(rawMessage, "utf8") },
       }),
     );
